@@ -88,12 +88,14 @@ export default function MainNavbar() {
               Sign In
             </Link>
 
-            <Button
-              radius="full"
-              className="bg-white text-black font-semibold px-6 h-11 hover:scale-105 transition-all duration-300"
-            >
-              Get Started
-            </Button>
+            <Link href={'/signup'}>
+              <Button
+                radius="full"
+                className="bg-white text-black font-semibold px-6 h-11 hover:scale-105 transition-all duration-300"
+              >
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -164,21 +166,23 @@ export default function MainNavbar() {
 
               {/* buttons */}
               <div className="mt-6 flex flex-col gap-3">
-                <Button
-                  as={Link}
-                  href="/login"
-                  radius="lg"
-                  className="w-full h-14 bg-violet-500/10 text-violet-400 font-semibold hover:bg-violet-500/20"
-                >
-                  Sign In
-                </Button>
+                <Link href="/login">
+                  <Button
+                    radius="lg"
+                    className="w-full h-14 bg-violet-500/10 text-violet-400 font-semibold hover:bg-violet-500/20"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
 
-                <Button
-                  radius="lg"
-                  className="w-full h-14 bg-white text-black font-semibold"
-                >
-                  Get Started
-                </Button>
+                <Link href={'/signup'}>
+                  <Button
+                    radius="lg"
+                    className="w-full h-14 bg-white text-black font-semibold"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
