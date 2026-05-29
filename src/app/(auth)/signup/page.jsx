@@ -6,6 +6,7 @@ import { Button, Input, Form } from '@heroui/react';
 import { Eye, EyeSlash, Check, TriangleExclamation } from '@gravity-ui/icons';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,10 +34,10 @@ const SignUpPage = () => {
 
     try {
       if (data) {
-        setSuccess('Account created successfully!');
+        toast.success('Account created successfully!');
         router.push('/login');
       } else {
-        alert(`${error}`);
+        toast.error(`${error}`);
       }
     } catch (error) {
       setError('Something went wrong. Please try again.');
@@ -81,6 +82,7 @@ const SignUpPage = () => {
           <Form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {/* name */}
             <Input
+              className={'w-full'}
               name="name"
               type="text"
               label="Name"
@@ -99,6 +101,7 @@ const SignUpPage = () => {
 
             {/* email */}
             <Input
+              className={'w-full'}
               name="email"
               type="email"
               label="Email"
@@ -117,6 +120,7 @@ const SignUpPage = () => {
 
             {/* password */}
             <Input
+              className={'w-full'}
               name="password"
               type={showPassword ? 'text' : 'password'}
               label="Password"
