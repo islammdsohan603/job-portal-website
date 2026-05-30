@@ -2,27 +2,22 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button, Input, Form } from '@heroui/react';
-import { Eye, EyeSlash, Check, TriangleExclamation } from '@gravity-ui/icons';
-import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { Button, Input } from '@heroui/react';
+import { Eye, EyeOff } from 'lucide-react';
+
 import { toast } from 'react-toastify';
+import { authClient } from '@/lib/auth-client';
 
-const SignUpPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
-
+export default function SignUpPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async e => {
-    e.preventDefault(); // পেজ রিলোড বন্ধ করার জন্য
+    e.preventDefault();
     setLoading(true);
-    setError('');
-    setSuccess('');
 
-    // ফর্ম থেকে ডেটা সংগ্রহের সঠিক নিয়ম
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
@@ -37,139 +32,101 @@ const SignUpPage = () => {
         toast.success('Account created successfully!');
         router.push('/login');
       } else {
-        toast.error(`${error}`);
+        toast.error(error?.message || 'Unable to create account.');
       }
     } catch (error) {
-      setError('Something went wrong. Please try again.');
+      toast.error(error?.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center px-4 py-10">
-      {/* glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-violet-600/20 blur-3xl rounded-full" />
+    <section className="relative min-h-screen overflow-hidden bg-[#050816] px-4 py-10 flex items-center justify-center">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(139,92,246,0.18),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.12),_transparent_30%)]" />
+      <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-3xl" />
 
       <div className="relative z-10 w-full max-w-md">
-        {/* card */}
-        <div className="bg-white/[0.03] border border-white/10 backdrop-blur-2xl rounded-3xl p-8 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-          {/* heading */}
-          <div className="text-center mb-8">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-[0_0_50px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
+          <div className="mb-8 text-center">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-violet-300">
+              Welcome
+            </p>
             <h1 className="text-3xl font-bold text-white">Create Account</h1>
-            <p className="text-gray-400 mt-3 text-sm">
-              Join the platform and start your journey
+            <p className="mt-3 text-sm text-gray-400">
+              Join the platform and start your journey.
             </p>
           </div>
 
-          {/* success message */}
-          {success && (
-            <div className="mb-5 flex items-center gap-2 rounded-2xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-400">
-              <Check className="w-4 h-4" />
-              {success}
+          <form onSubmit={handleSubmit} className="space-y-5 text-gray-300">
+            <div className="flex w-full flex-col gap-1.5">
+              <label htmlFor="name" className="text-sm font-medium text-gray-300">
+                Name
+              </label>
+              <input
+                required
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                type="text"
+                className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50"
+              />
             </div>
-          )}
-
-          {/* error message */}
-          {error && (
-            <div className="mb-5 flex items-center gap-2 rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-              <TriangleExclamation className="w-4 h-4" />
-              {error}
+            
+            <div className="flex w-full flex-col gap-1.5">
+              <label htmlFor="email" className="text-sm font-medium text-gray-300">
+                Email
+              </label>
+              <input
+                required
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                type="email"
+                className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50"
+              />
             </div>
-          )}
 
-          {/* form */}
-          <Form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {/* name */}
-            <Input
-              className={'w-full'}
-              name="name"
-              type="text"
-              label="Name"
-              labelPlacement="outside"
-              placeholder="Enter your name"
-              autoComplete="name" // DOM warning সমাধান
-              radius="lg"
-              variant="bordered"
-              isRequired
-              classNames={{
-                label: 'text-gray-300 mb-2',
-                input: 'text-white placeholder:text-gray-500',
-                inputWrapper: 'bg-white/[0.03] border border-white/10 h-14',
-              }}
-            />
-
-            {/* email */}
-            <Input
-              className={'w-full'}
-              name="email"
-              type="email"
-              label="Email"
-              labelPlacement="outside"
-              placeholder="john@example.com"
-              autoComplete="email" // DOM warning সমাধান
-              radius="lg"
-              variant="bordered"
-              isRequired
-              classNames={{
-                label: 'text-gray-300 mb-2',
-                input: 'text-white placeholder:text-gray-500',
-                inputWrapper: 'bg-white/[0.03] border border-white/10 h-14',
-              }}
-            />
-
-            {/* password */}
-            <Input
-              className={'w-full'}
-              name="password"
-              type={showPassword ? 'text' : 'password'}
-              label="Password"
-              labelPlacement="outside"
-              placeholder="Enter your password"
-              autoComplete="new-password" // DOM warning সমাধান
-              radius="lg"
-              variant="bordered"
-              isRequired
-              endContent={
+            <div className="flex w-full flex-col gap-1.5">
+              <label htmlFor="password" className="text-sm font-medium text-gray-300">
+                Password
+              </label>
+              <div className="relative flex w-full items-center">
+                <input
+                  required
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  type={showPassword ? 'text' : 'password'}
+                  minLength={6}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 p-3 pr-10 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50"
+                />
                 <button
                   type="button"
+                  className="absolute right-3 text-zinc-400 hover:text-zinc-300 focus:outline-none"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-white transition focus:outline-none"
+                  aria-label="toggle password visibility"
                 >
-                  {showPassword ? (
-                    <EyeSlash className="w-5 h-5" />
-                  ) : (
-                    <Eye className="w-5 h-5" />
-                  )}
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
-              }
-              classNames={{
-                label: 'text-gray-300 mb-2',
-                input: 'text-white placeholder:text-gray-500',
-                inputWrapper: 'bg-white/[0.03] border border-white/10 h-14',
-              }}
-            />
-
-            <p className="text-xs text-gray-500 -mt-2">
-              Password must contain 8 characters, one uppercase and one number
-            </p>
+              </div>
+            </div>
 
             <Button
               type="submit"
               isLoading={loading}
-              radius="full"
-              className="w-full h-14 bg-white text-black font-semibold text-base mt-2 hover:scale-[1.02] transition-all duration-300"
+              className="mt-4 h-14 w-full rounded-2xl bg-violet-600 text-white font-semibold shadow-lg shadow-violet-600/20 transition hover:bg-violet-500"
             >
               {loading ? 'Creating Account...' : 'Sign Up'}
             </Button>
-          </Form>
+          </form>
 
           <div className="mt-8 text-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-sm text-gray-400">
               Already have an account?{' '}
               <Link
                 href="/login"
-                className="text-violet-400 hover:text-violet-300 font-medium transition no-underline"
+                className="font-medium text-violet-400 transition hover:text-violet-300"
               >
                 Sign In
               </Link>
@@ -179,6 +136,4 @@ const SignUpPage = () => {
       </div>
     </section>
   );
-};
-
-export default SignUpPage;
+}
