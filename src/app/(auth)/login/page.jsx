@@ -7,6 +7,7 @@ import { Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import SocialSignUp from '@/components/SocialSignUp';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -64,9 +65,15 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <Form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-zinc-300">
+          <Form
+            onSubmit={handleSubmit}
+            className="flex w-full flex-col gap-5 text-zinc-300"
+          >
             <div className="flex w-full flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium text-zinc-300">
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-zinc-300"
+              >
                 Email
               </label>
               <input
@@ -80,7 +87,10 @@ const LoginPage = () => {
             </div>
 
             <div className="flex w-full flex-col gap-1.5">
-              <label htmlFor="password" className="text-sm font-medium text-zinc-300">
+              <label
+                htmlFor="password"
+                className="text-sm font-medium text-zinc-300"
+              >
                 Password
               </label>
               <div className="relative flex w-full items-center">
@@ -133,6 +143,8 @@ const LoginPage = () => {
               </Link>
             </p>
           </div>
+
+          <SocialSignUp />
         </div>
       </div>
     </section>

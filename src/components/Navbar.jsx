@@ -9,6 +9,7 @@ import { Button } from '@heroui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
+import { authClient } from '@/lib/auth-client';
 
 export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +39,10 @@ export default function MainNavbar() {
       href: '/pricing',
     },
   ];
+
+  const { data: sesson, isPending } = authClient.useSession();
+
+  const user = sesson?.user;
 
   return (
     <nav
@@ -81,21 +86,44 @@ export default function MainNavbar() {
 
           {/* buttons */}
           <div className="flex items-center gap-2">
-            <Link
-              href="/login"
-              className="px-4 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-3 pl-2">
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                  <div className="w-7 h-7 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-sm">
+                    {user.name?.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="text-sm font-medium text-white">{user.name}</span>
+                </div>
+                <Button 
+                  onClick={async () => {
+                    await authClient.signOut();
+                    window.location.href = '/';
+                  }}
+                  radius="full"
+                  className="bg-red-500/10 text-red-400 font-semibold px-4 h-10 hover:bg-red-500/20 transition-all duration-300 min-w-min"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline"
+                >
+                  Sign In
+                </Link>
 
-            <Link href={'/signup'}>
-              <Button
-                radius="full"
-                className="bg-white text-black font-semibold px-6 h-11 hover:scale-105 transition-all duration-300"
-              >
-                Get Started
-              </Button>
-            </Link>
+                <Link href={'/signup'}>
+                  <Button
+                    radius="full"
+                    className="bg-white text-black font-semibold px-6 h-11 hover:scale-105 transition-all duration-300"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
@@ -166,23 +194,49 @@ export default function MainNavbar() {
 
               {/* buttons */}
               <div className="mt-6 flex flex-col gap-3">
-                <Link href="/login">
-                  <Button
-                    radius="lg"
-                    className="w-full h-14 bg-violet-500/10 text-violet-400 font-semibold hover:bg-violet-500/20"
-                  >
-                    Sign In
-                  </Button>
-                </Link>
+                {user ? (
+                  <>
+                    <div className="flex items-center gap-3 bg-white/[0.03] border border-white/5 p-4 rounded-2xl">
+                      <div className="w-10 h-10 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-lg">
+                        {user.name?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-base font-medium text-white">{user.name}</span>
+                        <span className="text-xs text-zinc-400">{user.email}</span>
+                      </div>
+                    </div>
+                    <Button
+                      onClick={async () => {
+                        await authClient.signOut();
+                        window.location.href = '/';
+                      }}
+                      radius="lg"
+                      className="w-full h-14 bg-red-500/10 text-red-400 font-semibold hover:bg-red-500/20"
+                    >
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login">
+                      <Button
+                        radius="lg"
+                        className="w-full h-14 bg-violet-500/10 text-violet-400 font-semibold hover:bg-violet-500/20"
+                      >
+                        Sign In
+                      </Button>
+                    </Link>
 
-                <Link href={'/signup'}>
-                  <Button
-                    radius="lg"
-                    className="w-full h-14 bg-white text-black font-semibold"
-                  >
-                    Get Started
-                  </Button>
-                </Link>
+                    <Link href={'/signup'}>
+                      <Button
+                        radius="lg"
+                        className="w-full h-14 bg-white text-black font-semibold"
+                      >
+                        Get Started
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
