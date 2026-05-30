@@ -8,6 +8,7 @@ import { Eye, EyeOff } from 'lucide-react';
 
 import { toast } from 'react-toastify';
 import { authClient } from '@/lib/auth-client';
+import SocialSignUp from '@/components/SocialSignUp';
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -42,7 +43,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#050816] px-4 py-10 flex items-center justify-center">
+    <section className="  relative min-h-screen overflow-hidden bg-[#050816] px-4 py-28 flex items-center justify-center">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(139,92,246,0.18),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.12),_transparent_30%)]" />
       <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-3xl" />
 
@@ -60,7 +61,10 @@ export default function SignUpPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5 text-gray-300">
             <div className="flex w-full flex-col gap-1.5">
-              <label htmlFor="name" className="text-sm font-medium text-gray-300">
+              <label
+                htmlFor="name"
+                className="text-sm font-medium text-gray-300"
+              >
                 Name
               </label>
               <input
@@ -72,9 +76,12 @@ export default function SignUpPage() {
                 className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50"
               />
             </div>
-            
+
             <div className="flex w-full flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium text-gray-300">
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-gray-300"
+              >
                 Email
               </label>
               <input
@@ -88,7 +95,10 @@ export default function SignUpPage() {
             </div>
 
             <div className="flex w-full flex-col gap-1.5">
-              <label htmlFor="password" className="text-sm font-medium text-gray-300">
+              <label
+                htmlFor="password"
+                className="text-sm font-medium text-gray-300"
+              >
                 Password
               </label>
               <div className="relative flex w-full items-center">
@@ -132,6 +142,8 @@ export default function SignUpPage() {
               </Link>
             </p>
           </div>
+
+          <SocialSignUp />
         </div>
       </div>
     </section>

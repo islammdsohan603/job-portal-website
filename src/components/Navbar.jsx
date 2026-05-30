@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +44,8 @@ export default function MainNavbar() {
   const { data: sesson, isPending } = authClient.useSession();
 
   const user = sesson?.user;
+
+  const router = useRouter();
 
   return (
     <nav
@@ -92,9 +95,11 @@ export default function MainNavbar() {
                   <div className="w-7 h-7 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-sm">
                     {user.name?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-sm font-medium text-white">{user.name}</span>
+                  <span className="text-sm font-medium text-white">
+                    {user.name}
+                  </span>
                 </div>
-                <Button 
+                <Button
                   onClick={async () => {
                     await authClient.signOut();
                     window.location.href = '/';
@@ -201,8 +206,12 @@ export default function MainNavbar() {
                         {user.name?.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-base font-medium text-white">{user.name}</span>
-                        <span className="text-xs text-zinc-400">{user.email}</span>
+                        <span className="text-base font-medium text-white">
+                          {user.name}
+                        </span>
+                        <span className="text-xs text-zinc-400">
+                          {user.email}
+                        </span>
                       </div>
                     </div>
                     <Button
