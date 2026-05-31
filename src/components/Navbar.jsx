@@ -29,7 +29,7 @@ export default function MainNavbar() {
   const navLinks = [
     {
       name: 'Browse Jobs',
-      href: '/jobs',
+      href: '/browsejobs',
     },
     {
       name: 'Company',
