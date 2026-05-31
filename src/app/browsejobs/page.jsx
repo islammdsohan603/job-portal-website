@@ -62,7 +62,7 @@ const JobsDataPage = async ({ searchParams }) => {
           </Suspense>
         </div>
 
-        <div className="grid grid-cols-5 gap-8">
+        <div className="grid grid-cols-1  md:grid-cols-5 gap-8">
           <div className="col-span-1">
             <div className="sticky top-32">
               <h3 className="text-white text-lg font-bold mb-4">Filters</h3>

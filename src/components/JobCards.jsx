@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { MapPin, Star, Building2, Users } from 'lucide-react';
+import Link from 'next/link';
 
 const JobCards = ({ data }) => {
-  const { name, logo, industry, location, founded, rating, employees } = data;
+  const { name, logo, industry, location, founded, rating, employees, _id } =
+    data;
 
   return (
     <div className="group bg-[#111118] border border-white/10 rounded-2xl p-5 hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-300">
@@ -44,9 +46,11 @@ const JobCards = ({ data }) => {
         </div>
       </div>
 
-      <button className="w-full mt-5 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-medium transition-all">
-        View Company
-      </button>
+      <Link href={`/details/${_id}`}>
+        <button className="w-full mt-5 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-medium transition-all">
+          View Company
+        </button>
+      </Link>
     </div>
   );
 };

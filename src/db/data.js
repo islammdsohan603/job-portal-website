@@ -7,3 +7,13 @@ export const getData = async () => {
   return result
 
 }
+
+
+export const getSingleData = async (id) => {
+  const res = await fetch(`/api/jobs/${id}`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch job data')
+  }
+  const result = await res.json()
+  return result
+}
