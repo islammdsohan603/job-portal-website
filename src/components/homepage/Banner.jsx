@@ -58,35 +58,56 @@ export default function Banner() {
         </div>
 
         {/* Modern Search Bar */}
-        <div className="w-full max-w-4xl mb-8 px-4 md:px-0">
-          <div className="bg-[#111118]/80 border border-white/10 p-2 md:p-1.5 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center gap-2 backdrop-blur-xl shadow-2xl">
-            <div className="flex items-center w-full px-4">
-              <Search size={18} className="text-gray-500 mr-3 shrink-0" />
-              <Input
-                placeholder="Job title, skill or company"
-                variant="flat"
-                className={
-                  'w-full bg-transparent border-none shadow-none outline-none focus:border-none  '
-                }
+        <div className="w-full max-w-5xl mb-8 px-4 md:px-0">
+          <div className="bg-[#111118]/80 border border-white/10 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden">
+            {/* Job Search */}
+            <div className="flex items-center w-full h-16 px-5">
+              <Search size={20} className="text-gray-400 mr-3 flex-shrink-0" />
+
+              <input
+                type="search"
+                placeholder="Job title, keyword, or company"
+                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
               />
             </div>
 
-            <div className="hidden md:block w-px h-8 bg-white/10" />
+            <div className="hidden md:block w-px h-10 bg-white/10" />
 
-            <div className="flex items-center w-full px-4">
-              <MapPin size={18} className="text-gray-500 mr-3 shrink-0" />
-              <Input
+            {/* Location Search */}
+            <div className="flex items-center w-full h-16 px-5">
+              <MapPin size={20} className="text-gray-400 mr-3 flex-shrink-0" />
+
+              <input
+                type="search"
                 placeholder="Location or Remote"
-                variant="flat"
-                className={
-                  'w-full bg-transparent border-none shadow-none outline-none focus:border-none  '
-                }
+                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
               />
             </div>
 
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full md:w-auto rounded-xl md:rounded-full px-6 py-6 h-12 font-medium transition-all shrink-0">
-              <Search size={20} />
-            </Button>
+            {/* Search Button */}
+            <button
+              className="
+        m-2
+        h-12
+        w-12
+        min-w-12
+        rounded-full
+        bg-gradient-to-r
+        from-blue-600
+        to-blue-500
+        hover:from-blue-500
+        hover:to-blue-400
+        transition-all
+        duration-300
+        flex
+        items-center
+        justify-center
+        shadow-lg
+        shadow-blue-600/20
+      "
+            >
+              <Search size={20} className="text-white" />
+            </button>
           </div>
         </div>
 
