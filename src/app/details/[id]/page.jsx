@@ -15,6 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
+import ApplyModal from '@/components/ApplyModal';
 
 const JobDetailsPage = ({ params }) => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const JobDetailsPage = ({ params }) => {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center ">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">
             {error || 'Job not found'}
@@ -67,6 +68,7 @@ const JobDetailsPage = ({ params }) => {
   }
 
   const {
+    _id,
     name,
     logo,
     industry,
@@ -81,7 +83,7 @@ const JobDetailsPage = ({ params }) => {
   } = data;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f] py-12 px-4 md:px-8">
+    <div className="  min-h-screen bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f] py-28 px-4 md:px-8">
       {/* Back Button */}
       <button
         onClick={() => router.back()}
@@ -139,9 +141,13 @@ const JobDetailsPage = ({ params }) => {
           </div>
 
           {/* CTA Button */}
-          <button className="w-full md:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
-            Apply Now
-          </button>
+
+          <ApplyModal
+            jobId={_id || resolvedParams.id}
+            jobName={name}
+            industry={industry}
+            location={location}
+          />
         </div>
 
         {/* Content Grid */}
