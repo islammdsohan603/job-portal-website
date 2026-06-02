@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const getProfileImage = user =>
   user?.image || user?.picture || user?.avatar || user?.photoURL || null;
@@ -77,6 +78,18 @@ export default function MainNavbar() {
 
   const router = useRouter();
 
+  const handleSignOut = async () => {
+    try {
+      await authClient.signOut();
+      toast.success('Signed out successfully!');
+      setIsMenuOpen(false);
+      router.push('/');
+      router.refresh();
+    } catch (error) {
+      toast.error(error?.message || 'Unable to sign out. Please try again.');
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
@@ -129,10 +142,7 @@ export default function MainNavbar() {
                   <UserAvatar user={user} />
                 </Link>
                 <Button
-                  onClick={async () => {
-                    await authClient.signOut();
-                    window.location.href = '/';
-                  }}
+                  onClick={handleSignOut}
                   radius="full"
                   className="bg-red-500/10 text-red-400 font-semibold px-4 h-10 hover:bg-red-500/20 transition-all duration-300 min-w-min"
                 >
@@ -246,10 +256,7 @@ export default function MainNavbar() {
                       </div>
                     </Link>
                     <Button
-                      onClick={async () => {
-                        await authClient.signOut();
-                        window.location.href = '/';
-                      }}
+                      onClick={handleSignOut}
                       radius="lg"
                       className="w-full h-14 bg-red-500/10 text-red-400 font-semibold hover:bg-red-500/20"
                     >

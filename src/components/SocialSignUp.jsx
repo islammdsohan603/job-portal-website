@@ -20,6 +20,8 @@ const SocialSignUp = () => {
       if (error) {
         toast.error(error.message || 'Failed to connect with Google');
         setIsLoading(false);
+      } else {
+        toast.success('Redirecting to Google...');
       }
     } catch (error) {
       toast.error('Failed to connect with Google');

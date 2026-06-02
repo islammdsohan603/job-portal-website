@@ -22,13 +22,13 @@ export default function SignUpPage() {
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
-    const { data, error } = await authClient.signUp.email({
-      name: userData.name,
-      password: userData.password,
-      email: userData.email,
-    });
-
     try {
+      const { data, error } = await authClient.signUp.email({
+        name: userData.name,
+        password: userData.password,
+        email: userData.email,
+      });
+
       if (data) {
         toast.success('Account created successfully!');
         router.push('/login');

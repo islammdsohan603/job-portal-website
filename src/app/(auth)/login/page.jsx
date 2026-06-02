@@ -22,12 +22,12 @@ const LoginPage = () => {
     const formData = new FormData(e.currentTarget);
     const credentials = Object.fromEntries(formData.entries());
 
-    const { data, error } = await authClient.signIn.email({
-      email: credentials.email,
-      password: credentials.password,
-    });
-
     try {
+      const { data, error } = await authClient.signIn.email({
+        email: credentials.email,
+        password: credentials.password,
+      });
+
       if (data) {
         toast.success('Logged in successfully!');
         router.push('/');
