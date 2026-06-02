@@ -12,6 +12,36 @@ import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 
+const getProfileImage = user =>
+  user?.image || user?.picture || user?.avatar || user?.photoURL || null;
+
+function UserAvatar({ user, size = 'sm' }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const name = user?.name || 'User';
+  const image = getProfileImage(user);
+  const initial = name.charAt(0).toUpperCase();
+  const avatarSize = size === 'md' ? 'h-10 w-10 text-lg' : 'h-8 w-8 text-sm';
+
+  return (
+    <div
+      className={`${avatarSize} flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-violet-500/20 font-bold text-violet-300 ring-1 ring-white/10`}
+    >
+      {image && !imageFailed ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={image}
+          alt={name}
+          referrerPolicy="no-referrer"
+          className="h-full w-full object-cover"
+          onError={() => setImageFailed(true)}
+        />
+      ) : (
+        <span>{initial}</span>
+      )}
+    </div>
+  );
+}
+
 export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -91,14 +121,13 @@ export default function MainNavbar() {
           <div className="flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-3 pl-2">
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
-                  <div className="w-7 h-7 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-sm">
-                    {user.name?.charAt(0).toUpperCase()}
-                  </div>
-                  <span className="text-sm font-medium text-white">
-                    {user.name}
-                  </span>
-                </div>
+                <Link
+                  href="/profile"
+                  aria-label="Open profile"
+                  className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 transition-colors hover:bg-white/10"
+                >
+                  <UserAvatar user={user} />
+                </Link>
                 <Button
                   onClick={async () => {
                     await authClient.signOut();
@@ -201,10 +230,12 @@ export default function MainNavbar() {
               <div className="mt-6 flex flex-col gap-3">
                 {user ? (
                   <>
-                    <div className="flex items-center gap-3 bg-white/[0.03] border border-white/5 p-4 rounded-2xl">
-                      <div className="w-10 h-10 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-lg">
-                        {user.name?.charAt(0).toUpperCase()}
-                      </div>
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center gap-3 bg-white/[0.03] border border-white/5 p-4 rounded-2xl transition-colors hover:bg-white/10 no-underline"
+                    >
+                      <UserAvatar user={user} size="md" />
                       <div className="flex flex-col">
                         <span className="text-base font-medium text-white">
                           {user.name}
@@ -213,7 +244,7 @@ export default function MainNavbar() {
                           {user.email}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                     <Button
                       onClick={async () => {
                         await authClient.signOut();
