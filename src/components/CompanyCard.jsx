@@ -3,23 +3,21 @@ import Link from 'next/link';
 import React from 'react';
 
 const CompanyCard = ({ company }) => {
-  const { _id, companyName, hiringStatus, companyLogo } = company;
+  const { _id, name, logo } = company;
 
   return (
     <div className="group bg-[#111118] border border-white/10 rounded-2xl p-5 hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-300">
       <div className="flex items-center gap-4 mb-4">
         <Image
-          src={companyLogo}
-          alt={companyName}
+          src={logo}
+          alt={name}
           width={60}
           height={60}
           className="rounded-xl bg-white p-2"
         />
 
         <div>
-          <h2 className="text-white font-bold text-lg">{companyName}</h2>
-
-          <p className="text-gray-400 text-sm">{hiringStatus}</p>
+          <h2 className="text-white font-bold text-lg">{name}</h2>
         </div>
       </div>
 

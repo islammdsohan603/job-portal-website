@@ -56,7 +56,7 @@ const JobsDataPage = async ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-[#0B0B0F] py-28">
       <div className="w-10/12 mx-auto">
-        <div className="mb-8">
+        <div className="mb-8 mx-auto w-full max-w-5xl">
           <Suspense fallback={<SearchFallback />}>
             <Serach />
           </Suspense>
