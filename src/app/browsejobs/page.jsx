@@ -92,7 +92,7 @@ const JobsDataPage = async ({ searchParams }) => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {filteredData.map(company => (
-                  <JobCards key={company.id} data={company} />
+                  <JobCards key={company._id} data={company} />
                 ))}
               </div>
             )}

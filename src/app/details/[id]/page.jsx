@@ -11,11 +11,11 @@ import {
   Phone,
   ArrowLeft,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import ApplyModal from '@/components/ApplyModal';
+import CompanyLogo from '@/components/CompanyLogo';
 
 const JobDetailsPage = ({ params }) => {
   const router = useRouter();
@@ -100,12 +100,11 @@ const JobDetailsPage = ({ params }) => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Image
-                src={logo}
-                alt={name}
-                width={120}
-                height={120}
-                className="rounded-2xl bg-white p-3 object-contain"
+              <CompanyLogo
+                name={name}
+                logo={logo}
+                website={website}
+                size="lg"
               />
             </div>
 

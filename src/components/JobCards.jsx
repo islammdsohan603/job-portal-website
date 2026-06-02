@@ -1,21 +1,15 @@
-import Image from 'next/image';
 import { MapPin, Star, Building2, Users } from 'lucide-react';
 import Link from 'next/link';
+import CompanyLogo from './CompanyLogo';
 
 const JobCards = ({ data }) => {
-  const { name, logo, industry, location, founded, rating, employees, _id } =
+  const { name, logo, website, industry, location, founded, rating, employees, _id } =
     data;
 
   return (
     <div className="group bg-[#111118] border border-white/10 rounded-2xl p-5 hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-300">
       <div className="flex items-center gap-4 mb-4">
-        <Image
-          src={logo}
-          alt={name}
-          width={60}
-          height={60}
-          className="rounded-xl bg-white p-2"
-        />
+        <CompanyLogo name={name} logo={logo} website={website} />
 
         <div>
           <h2 className="text-white font-bold text-lg">{name}</h2>
