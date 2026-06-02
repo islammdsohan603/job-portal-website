@@ -1,7 +1,7 @@
 'use client';
 
 import { MapPin, Search } from 'lucide-react';
-import { useEffect, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const Serach = () => {
@@ -9,17 +9,13 @@ const Serach = () => {
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
 
-  const [jobTitle, setJobTitle] = useState('');
-  const [location, setLocation] = useState('');
-
-  useEffect(() => {
-    setJobTitle(searchParams.get('jobTitle') || '');
-    setLocation(searchParams.get('location') || '');
-  }, [searchParams]);
+  const [jobTitle, setJobTitle] = useState(searchParams.get('jobTitle') || '');
+  const [location, setLocation] = useState(searchParams.get('location') || '');
 
   const handleSearch = () => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams.toString());
+      params.delete('page');
 
       if (jobTitle.trim()) {
         params.set('jobTitle', jobTitle.trim());

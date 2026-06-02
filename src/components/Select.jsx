@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const Select = ({ categories = [] }) => {
@@ -8,17 +8,16 @@ const Select = ({ categories = [] }) => {
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  useEffect(() => {
-    setSelectedCategory(searchParams.get('category') || '');
-  }, [searchParams]);
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get('category') || '',
+  );
 
   const handleCategoryChange = value => {
     setSelectedCategory(value);
 
     startTransition(() => {
       const params = new URLSearchParams(searchParams.toString());
+      params.delete('page');
 
       if (value) {
         params.set('category', value);

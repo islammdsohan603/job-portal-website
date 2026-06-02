@@ -1,8 +1,25 @@
 import JobCards from '@/components/JobCards';
+import PaginationControls from '@/components/PaginationControls';
 import Select from '@/components/Select';
 import Serach from '@/components/Serach';
 import { getData } from '@/db/data';
 import { Suspense } from 'react';
+
+const ITEMS_PER_PAGE = 8;
+
+const getCurrentPage = (page, totalPages) => {
+  const parsedPage = Number.parseInt(page, 10);
+
+  if (
+    !Number.isInteger(parsedPage) ||
+    parsedPage < 1 ||
+    parsedPage > totalPages
+  ) {
+    return 1;
+  }
+
+  return parsedPage;
+};
 
 function SearchFallback() {
   return (
@@ -28,7 +45,6 @@ const JobsDataPage = async ({ searchParams }) => {
   const jobTitle = params?.jobTitle || '';
   const location = params?.location || '';
   const category = params?.category || '';
-
   const categories = [...new Set(data.map(item => item.industry))].filter(
     Boolean,
   );
@@ -51,6 +67,16 @@ const JobsDataPage = async ({ searchParams }) => {
     return matchesJobTitle && matchesLocation && matchesCategory;
   });
 
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredData.length / ITEMS_PER_PAGE),
+  );
+  const currentPage = getCurrentPage(params?.page, totalPages);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedData = filteredData.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
   const hasActiveFilters = Boolean(jobTitle || location || category);
 
   return (
@@ -91,17 +117,25 @@ const JobsDataPage = async ({ searchParams }) => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {filteredData.map(company => (
+                {paginatedData.map(company => (
                   <JobCards key={company._id} data={company} />
                 ))}
               </div>
             )}
+
+            <PaginationControls
+              basePath="/browsejobs"
+              currentPage={currentPage}
+              totalPages={totalPages}
+              searchParams={params}
+            />
           </div>
         </div>
 
         <div className="mt-8 text-center text-gray-400">
           <p>
-            Showing {filteredData.length} of {data.length} jobs
+            Showing {paginatedData.length} of {filteredData.length} matching
+            jobs
           </p>
         </div>
       </div>
