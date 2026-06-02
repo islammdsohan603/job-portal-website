@@ -16,6 +16,7 @@ import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import ApplyModal from '@/components/ApplyModal';
 import CompanyLogo from '@/components/CompanyLogo';
+import PageLoading from '@/components/PageLoading';
 
 const JobDetailsPage = ({ params }) => {
   const router = useRouter();
@@ -42,11 +43,7 @@ const JobDetailsPage = ({ params }) => {
   }, [resolvedParams.id]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-orange-500"></div>
-      </div>
-    );
+    return <PageLoading message="Loading company details..." />;
   }
 
   if (error || !data) {
