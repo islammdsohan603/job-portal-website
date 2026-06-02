@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const LookSection = () => {
   return (
@@ -31,9 +32,11 @@ const LookSection = () => {
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="px-8 py-4 bg-white text-black rounded-xl font-medium hover:scale-105 transition duration-300">
-            Create a free account
-          </button>
+          <Link href="/signup">
+            <button className="px-8 py-4 bg-white text-black rounded-xl font-medium hover:scale-105 transition duration-300">
+              Create a free account
+            </button>
+          </Link>
 
           <button className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm text-white rounded-xl hover:bg-white/10 transition duration-300">
             View pricing

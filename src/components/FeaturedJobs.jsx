@@ -87,7 +87,7 @@ export default function FeaturedJobs() {
           </div>
 
           <h2 className="text-white text-4xl md:text-6xl font-bold max-w-4xl mx-auto leading-tight">
-            The roles you'd never find by searching
+            The roles you d never find by searching
           </h2>
         </motion.div>
 

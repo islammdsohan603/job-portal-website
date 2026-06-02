@@ -17,3 +17,11 @@ export const getSingleData = async (id) => {
   const result = await res.json()
   return result
 }
+
+
+export const getCompanyData = async () => {
+  const res = await fetch('http://localhost:5000/company', { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
+  const result = await res.json()
+  return result
+}
+
