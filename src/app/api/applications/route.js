@@ -30,6 +30,26 @@ const isValidUrl = value => {
   }
 };
 
+export async function GET(request) {
+  try {
+    const client = await getClient();
+    const applications = client.db('jobprotal').collection('applications');
+
+    const allApplications = await applications
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    return Response.json({ applications: allApplications }, { status: 200 });
+  } catch (error) {
+    console.error('Get Applications API Error:', error);
+    return Response.json(
+      { error: 'Unable to fetch applications right now.' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();

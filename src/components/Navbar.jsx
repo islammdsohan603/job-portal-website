@@ -141,6 +141,12 @@ export default function MainNavbar() {
                 >
                   <UserAvatar user={user} />
                 </Link>
+                <Link
+                  href="/dashboard/recuter"
+                  className="px-4 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline"
+                >
+                  Recruiter
+                </Link>
                 <Button
                   onClick={handleSignOut}
                   radius="full"
@@ -254,6 +260,14 @@ export default function MainNavbar() {
                           {user.email}
                         </span>
                       </div>
+                    </Link>
+                    <Link
+                      href="/dashboard/recuter"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between px-5 py-4 rounded-2xl bg-white/[0.03] border border-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-300 no-underline"
+                    >
+                      Recruiter Dashboard
+                      <span className="text-white/30">→</span>
                     </Link>
                     <Button
                       onClick={handleSignOut}
