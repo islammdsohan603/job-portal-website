@@ -1,9 +1,32 @@
 import ApplyListCard from '@/components/ApplyListCard';
 import { getApplyListData } from '@/db/data';
+import Link from 'next/link';
 import React from 'react';
 
 const ApplyListPage = async () => {
   const data = await getApplyListData();
+
+  if (data.length === 0) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0F] py-28 px-4 md:px-8">
+        <div className="w-10/12 mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold text-white text-center mb-12">
+            My Applications
+          </h2>
+
+          <p className="text-center text-gray-400 text-lg">
+            You haven't applied to any jobs yet.
+          </p>
+          <Link
+            href="/browsejobs"
+            className="block w-max mx-auto mt-6 bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-lg font-medium transition-all"
+          >
+            Browse Jobs
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="  min-h-screen bg-[#0B0B0F]  py-28 px-4 md:px-8">

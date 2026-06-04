@@ -145,7 +145,7 @@ export default function MainNavbar() {
 
                 <Link
                   href="/dashboard/recuter"
-                  className="hidden lg:block px-3 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline whitespace-nowrap"
+                  className="hidden md:block px-3 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline whitespace-nowrap"
                 >
                   Recruiter
                 </Link>
