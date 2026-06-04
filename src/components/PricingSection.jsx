@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import {
   FaCrown,
   FaBolt,
@@ -52,11 +53,65 @@ const pricingPlans = [
   },
 ];
 
+const getApiUrl = () =>
+  (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(
+    /\/$/,
+    '',
+  );
+
 export default function PricingSection() {
   const [isYearly, setIsYearly] = useState(false);
+  const [loadingPlan, setLoadingPlan] = useState(null);
+
+  const handleCheckout = async plan => {
+    const price = isYearly ? plan.yearly : plan.monthly;
+    const interval = isYearly ? 'Yearly' : 'Monthly';
+
+    if (price === 0) {
+      toast.info('Starter plan is free. No payment is needed.');
+      return;
+    }
+
+    const planKey = `${plan.name}-${interval}`;
+    setLoadingPlan(planKey);
+
+    try {
+      const origin = window.location.origin;
+      const response = await fetch(`${getApiUrl()}/checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product: {
+            name: `${plan.name} ${interval}`,
+            price,
+            image: `${origin}/logo.png`,
+          },
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to create checkout session.');
+      }
+
+      if (!data.url) {
+        throw new Error('Checkout URL was not returned by the server.');
+      }
+
+      toast.success('Checkout ready. Redirecting to Stripe...');
+      window.location.assign(data.url);
+    } catch (error) {
+      toast.error(error.message || 'Payment could not start. Try again.');
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
 
   return (
-    <section className="bg-black py-24 px-6 overflow-hidden">
+    <section id="pricing" className="bg-black py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
 
@@ -114,6 +169,8 @@ export default function PricingSection() {
         <div className="grid lg:grid-cols-3 gap-8">
           {pricingPlans.map((plan, index) => {
             const Icon = plan.icon;
+            const planKey = `${plan.name}-${isYearly ? 'Yearly' : 'Monthly'}`;
+            const isLoading = loadingPlan === planKey;
 
             return (
               <motion.div
@@ -181,14 +238,17 @@ export default function PricingSection() {
                 {/* Button */}
 
                 <button
+                  type="button"
+                  onClick={() => handleCheckout(plan)}
+                  disabled={Boolean(loadingPlan)}
                   className={`w-full py-4 rounded-xl flex items-center justify-center gap-3 font-medium transition ${
                     plan.featured
                       ? 'bg-white text-black hover:scale-[1.02]'
                       : 'bg-[#1b1b1b] text-white hover:bg-[#242424]'
-                  }`}
+                  } ${loadingPlan ? 'cursor-not-allowed opacity-70' : ''}`}
                 >
-                  Choose This Plan
-                  <FaArrowRight />
+                  {isLoading ? 'Preparing Checkout...' : 'Choose This Plan'}
+                  <FaArrowRight className={isLoading ? 'animate-pulse' : ''} />
                 </button>
               </motion.div>
             );

@@ -89,58 +89,40 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     setError('');
     setSuccess(false);
-
-    const requiredFields = [
-      'name',
-      'email',
-      'phone',
-      'resumeUrl',
-      'message',
-    ];
-    const hasMissingField = requiredFields.some(
-      field => !formData[field].trim()
-    );
-
-    if (hasMissingField) {
-      setError('Please fill in all required fields before submitting.');
-      return;
-    }
-
     try {
-      setLoading(true);
-
-      const response = await fetch('/api/applications', {
+      const res = await fetch('http://localhost:5000/job-seeker', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
-          jobId,
-          jobName,
-          industry,
-          location,
+          candidateName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          currentRole: formData.currentRole,
+          expectedSalary: formData.expectedSalary,
+          availability: formData.availability,
+          resumeUrl: formData.resumeUrl,
+          portfolioUrl: formData.portfolioUrl,
+          message: formData.message,
+          jobId: jobId,
         }),
       });
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to submit application');
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
       }
 
       setSuccess(true);
       setFormData(initialFormData);
       closeTimerRef.current = window.setTimeout(() => {
-        setIsOpen(false);
-        setSuccess(false);
-      }, 1000);
+        closeModal();
+      }, 3000);
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
+      setError('Failed to submit application. Please try again later.');
     }
   };
 
@@ -400,9 +382,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                 >
                   {success && <CheckCircle2 size={18} />}
                   <span>
-                    {success
-                      ? 'Application submitted successfully.'
-                      : error}
+                    {success ? 'Application submitted successfully.' : error}
                   </span>
                 </div>
               )}
