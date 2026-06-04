@@ -112,14 +112,15 @@ export default function MainNavbar() {
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-8 bg-white/[0.03] border border-white/10 px-2 py-2 rounded-full backdrop-blur-xl">
-          {/* nav links */}
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-2 lg:gap-4 bg-white/[0.03] border border-white/10 px-2 py-2 rounded-full backdrop-blur-xl">
+          {/* NAV LINKS */}
           <ul className="flex items-center gap-1">
             {navLinks.map(item => (
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="px-5 py-2.5 rounded-full text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-300 no-underline"
+                  className="px-3 lg:px-5 py-2 rounded-full text-sm lg:text-base font-medium text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-300 no-underline whitespace-nowrap"
                 >
                   {item.name}
                 </Link>
@@ -127,13 +128,13 @@ export default function MainNavbar() {
             ))}
           </ul>
 
-          {/* divider */}
-          <div className="w-px h-6 bg-white/10" />
+          {/* Divider */}
+          <div className="hidden lg:block w-px h-6 bg-white/10" />
 
-          {/* buttons */}
+          {/* USER AREA */}
           <div className="flex items-center gap-2">
             {user ? (
-              <div className="flex items-center gap-3 pl-2">
+              <>
                 <Link
                   href="/profile"
                   aria-label="Open profile"
@@ -141,38 +142,40 @@ export default function MainNavbar() {
                 >
                   <UserAvatar user={user} />
                 </Link>
+
                 <Link
                   href="/dashboard/recuter"
-                  className="px-4 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline"
+                  className="hidden lg:block px-3 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline whitespace-nowrap"
                 >
                   Recruiter
                 </Link>
+
                 <Button
                   onClick={handleSignOut}
                   radius="full"
-                  className="bg-red-500/10 text-red-400 font-semibold px-4 h-10 hover:bg-red-500/20 transition-all duration-300 min-w-min"
+                  className="bg-red-500/10 text-red-400 font-semibold px-3 lg:px-4 h-10 hover:bg-red-500/20 transition-all duration-300 whitespace-nowrap"
                 >
                   Sign Out
                 </Button>
-              </div>
+              </>
             ) : (
-              <div className="flex items-center gap-2">
+              <>
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline"
+                  className="px-3 py-2 text-sm font-semibold text-violet-400 hover:text-violet-300 transition-all duration-300 no-underline whitespace-nowrap"
                 >
                   Sign In
                 </Link>
 
-                <Link href={'/signup'}>
+                <Link href="/signup">
                   <Button
                     radius="full"
-                    className="bg-white text-black font-semibold px-6 h-11 hover:scale-105 transition-all duration-300"
+                    className="bg-white text-black font-semibold px-4 lg:px-6 h-11 hover:scale-105 transition-all duration-300 whitespace-nowrap"
                   >
                     Get Started
                   </Button>
                 </Link>
-              </div>
+              </>
             )}
           </div>
         </div>
