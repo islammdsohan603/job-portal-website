@@ -67,8 +67,8 @@ export default function MainNavbar() {
       href: '/company',
     },
     {
-      name: 'Pricing',
-      href: '/pricing',
+      name: 'ApplyList',
+      href: '/applylist',
     },
   ];
 

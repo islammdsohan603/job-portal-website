@@ -31,3 +31,13 @@ export const getCompanyData = async () => {
   return result
 }
 
+
+// applylist data
+
+export const getApplyListData = async () => {
+  const res = await fetch(`http://localhost:5000/job-seeker-data`, { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
+  const result = await res.json()
+  return result
+}
+
+
