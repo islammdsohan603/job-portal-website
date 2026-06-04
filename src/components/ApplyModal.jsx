@@ -109,6 +109,9 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
           portfolioUrl: formData.portfolioUrl,
           message: formData.message,
           jobId: jobId,
+          jobName: jobName,
+          industry: industry,
+          location: location,
         }),
       });
 
