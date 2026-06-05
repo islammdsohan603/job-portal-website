@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaBriefcase, FaArrowRight } from 'react-icons/fa';
+import Link from 'next/link';
 
 const jobs = [
   {
@@ -10,6 +11,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
   {
     id: 2,
@@ -17,6 +19,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
   {
     id: 3,
@@ -24,6 +27,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
   {
     id: 4,
@@ -31,6 +35,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
   {
     id: 5,
@@ -38,6 +43,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
   {
     id: 6,
@@ -45,6 +51,7 @@ const jobs = [
     location: 'New York, USA',
     type: 'Hybrid',
     salary: '€25-€40/hour',
+    link: '/browsejobs',
   },
 ];
 
@@ -135,7 +142,14 @@ export default function FeaturedJobs() {
               </div>
 
               <button className="group/btn flex items-center gap-2 text-white font-medium">
-                Apply Now
+                {job.link ? (
+                  <Link href={job.link}>
+                    <span>Apply Now</span>
+                  </Link>
+                ) : (
+                  <span>Apply Now</span>
+                )}
+
                 <FaArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-2" />
               </button>
             </motion.div>
@@ -151,9 +165,11 @@ export default function FeaturedJobs() {
           transition={{ delay: 0.2 }}
           className="flex justify-center mt-16"
         >
-          <button className="bg-white text-black px-8 py-4 rounded-xl font-medium hover:scale-105 transition duration-300">
-            View all job open
-          </button>
+          <Link href="/browsejobs">
+            <button className="bg-white text-black px-8 py-4 rounded-xl font-medium hover:scale-105 transition duration-300">
+              View all job open
+            </button>
+          </Link>
         </motion.div>
       </div>
     </section>
