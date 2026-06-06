@@ -2,7 +2,7 @@
 
 export const getData = async () => {
 
-  const res = await fetch('http://localhost:5000/jobs', { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs`, { cache: 'no-store' })
   const result = await res.json()
   return result
 
@@ -11,7 +11,7 @@ export const getData = async () => {
 
 export const getSingleData = async (id) => {
   try {
-    const res = await fetch(`http://localhost:5000/jobs/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${id}`);
 
     if (!res.ok) {
       throw new Error(`HTTP Error: ${res.status}`);
@@ -26,7 +26,7 @@ export const getSingleData = async (id) => {
 
 
 export const getCompanyData = async () => {
-  const res = await fetch('http://localhost:5000/company', { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/company`, { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
   const result = await res.json()
   return result
 }
@@ -35,7 +35,7 @@ export const getCompanyData = async () => {
 // applylist data
 
 export const getApplyListData = async () => {
-  const res = await fetch(`http://localhost:5000/job-seeker-data`, { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/job-seeker-data`, { cache: 'no-store', headers: { 'Content-Type': 'application/json' } })
   const result = await res.json()
   return result
 }

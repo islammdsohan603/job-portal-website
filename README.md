@@ -29,6 +29,8 @@ or course-style purchases.
 - **Responsive dark UI** built with Tailwind CSS, HeroUI, Lucide icons, React
   Icons, and Framer Motion.
 
+## Live Demo Link : https://jobswebsite-sooty.vercel.app/
+
 ## User Guide
 
 ### For Job Seekers
@@ -66,9 +68,27 @@ local/sample state. It does not persist recruiter changes to the database yet.
    Stripe.
 6. After payment, Stripe redirects to `/success` or `/cancel`.
 
+## Screenshot
+
+## Home page
+
+![alt text](<Screenshot 2026-06-06 082630.png>)
+
+## Company Name Page
+
+![alt text](<Screenshot 2026-06-06 082644.png>)
+
+## Applications List Page
+
+![alt text](<Screenshot 2026-06-06 082732.png>)
+
+## Recuter Page
+
+![alt text](<Screenshot 2026-06-06 082748.png>)
+
 ## Tech Stack
 
-### Frontend
+-Node.js -Express.js
 
 - Next.js `16.2.6`
 - React `19.2.4`
