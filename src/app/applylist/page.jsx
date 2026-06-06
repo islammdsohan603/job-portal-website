@@ -8,14 +8,14 @@ const ApplyListPage = async () => {
 
   if (data.length === 0) {
     return (
-      <div className="min-h-screen bg-[#0B0B0F] py-28 px-4 md:px-8">
+      <div className="min-h-screen bg-white px-4 py-28 transition-colors duration-300 dark:bg-[#0B0B0F] md:px-8">
         <div className="w-10/12 mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-white text-center mb-12">
+          <h2 className="mb-12 text-center text-4xl font-bold text-slate-900 dark:text-white md:text-6xl">
             My Applications
           </h2>
 
-          <p className="text-center text-gray-400 text-lg">
-            You haven't applied to any jobs yet.
+          <p className="text-center text-lg text-slate-600 dark:text-gray-400">
+            You haven&apos;t applied to any jobs yet.
           </p>
           <Link
             href="/browsejobs"
@@ -29,9 +29,9 @@ const ApplyListPage = async () => {
   }
 
   return (
-    <div className="  min-h-screen bg-[#0B0B0F]  py-28 px-4 md:px-8">
+    <div className="min-h-screen bg-white px-4 py-28 transition-colors duration-300 dark:bg-[#0B0B0F] md:px-8">
       <div className="w-10/12 mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold text-white text-center mb-12">
+        <h2 className="mb-12 text-center text-4xl font-bold text-slate-900 dark:text-white md:text-6xl">
           My Applications
         </h2>
 

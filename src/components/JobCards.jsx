@@ -7,34 +7,34 @@ const JobCards = ({ data }) => {
     data;
 
   return (
-    <div className="group bg-[#111118] border border-white/10 rounded-2xl p-5 hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-300">
+    <div className="group bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-2xl p-5 hover:border-orange-500/40 hover:-translate-y-2 transition-all duration-300">
       <div className="flex items-center gap-4 mb-4">
         <CompanyLogo name={name} logo={logo} website={website} />
 
         <div>
-          <h2 className="text-white font-bold text-lg">{name}</h2>
+          <h2 className="text-slate-900 dark:text-white font-bold text-lg">{name}</h2>
 
-          <p className="text-gray-400 text-sm">{industry}</p>
+          <p className="text-slate-500 dark:text-gray-400 text-sm">{industry}</p>
         </div>
       </div>
 
       <div className="space-y-3 text-sm">
-        <div className="flex items-center gap-2 text-gray-300">
+        <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
           <MapPin size={16} />
           <span>{location}</span>
         </div>
 
-        <div className="flex items-center gap-2 text-gray-300">
+        <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
           <Building2 size={16} />
           <span>Founded {founded}</span>
         </div>
 
-        <div className="flex items-center gap-2 text-gray-300">
+        <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
           <Users size={16} />
           <span>{employees?.toLocaleString()} Employees</span>
         </div>
 
-        <div className="flex items-center gap-2 text-yellow-400">
+        <div className="flex items-center gap-2 text-yellow-500 dark:text-yellow-400">
           <Star size={16} fill="currentColor" />
           <span>{rating}</span>
         </div>

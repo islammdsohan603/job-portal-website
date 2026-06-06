@@ -111,7 +111,7 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="bg-black py-24 px-6 overflow-hidden">
+    <section id="pricing" className="bg-white dark:bg-black py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
 
@@ -123,13 +123,13 @@ export default function PricingSection() {
         >
           <div className="flex justify-center items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-            <p className="uppercase text-xs tracking-[3px] text-gray-400">
+            <p className="uppercase text-xs tracking-[3px] text-slate-500 dark:text-gray-400">
               Pricing
             </p>
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
           </div>
 
-          <h2 className="text-white text-4xl md:text-6xl font-bold">
+          <h2 className="text-slate-900 dark:text-white text-4xl md:text-6xl font-bold">
             Pay for the leverage,
             <br />
             not the listings
@@ -139,11 +139,11 @@ export default function PricingSection() {
         {/* Toggle */}
 
         <div className="flex justify-center mb-14">
-          <div className="bg-[#161616] p-1 rounded-full flex items-center">
+          <div className="bg-slate-100 dark:bg-[#161616] p-1 rounded-full flex items-center border border-black/5 dark:border-0">
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-5 py-2 rounded-full text-sm transition ${
-                !isYearly ? 'bg-white text-black' : 'text-gray-400'
+              className={`px-5 py-2 rounded-full text-sm font-medium transition ${
+                !isYearly ? 'bg-slate-900 text-white dark:bg-white dark:text-black shadow' : 'text-slate-600 dark:text-gray-400'
               }`}
             >
               Monthly
@@ -151,8 +151,8 @@ export default function PricingSection() {
 
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-5 py-2 rounded-full text-sm transition ${
-                isYearly ? 'bg-white text-black' : 'text-gray-400'
+              className={`px-5 py-2 rounded-full text-sm font-medium transition ${
+                isYearly ? 'bg-slate-900 text-white dark:bg-white dark:text-black shadow' : 'text-slate-600 dark:text-gray-400'
               }`}
             >
               Yearly
@@ -188,33 +188,33 @@ export default function PricingSection() {
                 }}
                 className={`rounded-3xl border p-8 transition-all duration-300 ${
                   plan.featured
-                    ? 'border-white/20 bg-gradient-to-b from-zinc-900 to-zinc-950 shadow-[0_0_40px_rgba(255,255,255,0.08)]'
-                    : 'border-white/10 bg-[#0d0d0d]'
+                    ? 'border-black/10 dark:border-white/20 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-zinc-900 dark:to-zinc-950 shadow-[0_0_40px_rgba(0,0,0,0.03)] dark:shadow-[0_0_40px_rgba(255,255,255,0.08)]'
+                    : 'border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-[#0d0d0d]'
                 }`}
               >
                 {/* Top */}
 
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#161616] flex items-center justify-center">
-                      <Icon className="text-violet-300" />
+                    <div className="w-10 h-10 rounded-xl bg-slate-200/50 dark:bg-[#161616] flex items-center justify-center">
+                      <Icon className="text-violet-600 dark:text-violet-300" />
                     </div>
 
-                    <h3 className="text-white text-xl font-semibold">
+                    <h3 className="text-slate-900 dark:text-white text-xl font-semibold">
                       {plan.name}
                     </h3>
                   </div>
 
                   <div>
-                    <span className="text-white text-5xl font-bold">
+                    <span className="text-slate-900 dark:text-white text-5xl font-bold">
                       ${isYearly ? plan.yearly : plan.monthly}
                     </span>
 
-                    <span className="text-gray-400 text-sm">/month</span>
+                    <span className="text-slate-500 dark:text-gray-400 text-sm">/month</span>
                   </div>
                 </div>
 
-                <p className="text-gray-300 mb-6">
+                <p className="text-slate-700 dark:text-gray-300 mb-6 font-medium">
                   Start building your insights hub:
                 </p>
 
@@ -224,9 +224,9 @@ export default function PricingSection() {
                   {plan.features.map((feature, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 text-gray-400"
+                      className="flex items-center gap-3 text-slate-650 dark:text-gray-400"
                     >
-                      <div className="w-5 h-5 rounded bg-[#1a1a1a] flex items-center justify-center">
+                      <div className="w-5 h-5 rounded bg-slate-200 dark:bg-[#1a1a1a] flex items-center justify-center text-slate-700 dark:text-white">
                         <FaCheck size={10} />
                       </div>
 
@@ -243,8 +243,8 @@ export default function PricingSection() {
                   disabled={Boolean(loadingPlan)}
                   className={`w-full py-4 rounded-xl flex items-center justify-center gap-3 font-medium transition ${
                     plan.featured
-                      ? 'bg-white text-black hover:scale-[1.02]'
-                      : 'bg-[#1b1b1b] text-white hover:bg-[#242424]'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-black hover:scale-[1.02]'
+                      : 'bg-slate-200/80 hover:bg-slate-300/80 text-slate-900 dark:bg-[#1b1b1b] dark:text-white dark:hover:bg-[#242424]'
                   } ${loadingPlan ? 'cursor-not-allowed opacity-70' : ''}`}
                 >
                   {isLoading ? 'Preparing Checkout...' : 'Choose This Plan'}

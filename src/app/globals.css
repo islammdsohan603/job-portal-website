@@ -2,3 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 @plugin "daisyui";
+
+/* Invert white logo to black in light mode */
+html:not(.dark) img[src="/logo.png"] {
+  filter: invert(1) !important;
+}
+
+/* Global light theme overrides for all pages */
+html:not(.dark) body {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Base backgrounds */
+html:not(.dark) .bg-\[\#0B0B0F\],
+html:not(.dark) .bg-\[\#0b0b0f\],
+html:not(.dark) .bg-\[\#0a0a0f\],
+html:not(.dark) .bg-\[\#0A0A0F\],
+html:not(.dark) .bg-\[\#050505\],
+html:not(.dark) .bg-\[\#050505\]\/95 {
+  background-color: #ffffff !important;
+}
+
+/* Card/Section backgrounds */
+html:not(.dark) .bg-\[\#111118\],
+html:not(.dark) .bg-\[\#111118\]\/80,
+html:not(.dark) .bg-\[\#111118\]\/90,
+html:not(.dark) .bg-\[\#0d0d0d\],
+html:not(.dark) .bg-\[\#0f0f14\]\/80,
+html:not(.dark) .bg-\[\#0f0f14\] {
+  background-color: #f8fafc !important;
+}
+
+/* Input/Action/Pill backgrounds */
+html:not(.dark) .bg-white\/5,
+html:not(.dark) .bg-white\/10:not(button):not(a) {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+html:not(.dark) .bg-white\/5:hover,
+html:not(.dark) .bg-white\/10:not(button):not(a):hover {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Borders */
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/20,
+html:not(.dark) .border-\[\#222\] {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Headings and body texts (white override) */
+html:not(.dark) h1.text-white,
+html:not(.dark) h2.text-white,
+html:not(.dark) h3.text-white,
+html:not(.dark) h4.text-white,
+html:not(.dark) p.text-white,
+html:not(.dark) label.text-white,
+html:not(.dark) span.text-white:not(button *):not(a *),
+html:not(.dark) div.text-white:not(button *):not(a *),
+html:not(.dark) main.text-white {
+  color: #0f172a !important;
+}
+
+/* Muted/secondary texts */
+html:not(.dark) .text-zinc-300,
+html:not(.dark) .text-gray-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-zinc-400,
+html:not(.dark) .text-gray-400,
+html:not(.dark) .text-gray-500 {
+  color: #64748b !important;
+}
+
+/* Specific buttons theme alignment (e.g. white buttons) */
+html:not(.dark) .bg-white.text-black:not(.bg-gradient-to-r) {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+html:not(.dark) .bg-white.text-black:not(.bg-gradient-to-r):hover {
+  background-color: #1e293b !important;
+}

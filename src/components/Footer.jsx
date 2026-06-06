@@ -8,7 +8,7 @@ import { HiLocationMarker } from 'react-icons/hi';
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10">
+    <footer className="bg-slate-50 dark:bg-black border-t border-slate-200 dark:border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* left side */}
@@ -19,7 +19,7 @@ export default function Footer() {
             </div>
 
             {/* description */}
-            <p className="text-gray-500 text-sm leading-7 mt-6 max-w-xs">
+            <p className="text-slate-600 dark:text-gray-500 text-sm leading-7 mt-6 max-w-xs">
               The AI-native career platform. Built for people who take their
               work seriously.
             </p>
@@ -27,8 +27,8 @@ export default function Footer() {
             {/* social icons */}
             <div className="flex items-center gap-3 mt-10">
               <Link href="#">
-                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-violet-600 transition-all duration-300">
-                  <FaFacebookF size={18} className="text-white" />
+                <div className="w-10 h-10 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-violet-600 hover:text-white group transition-all duration-300">
+                  <FaFacebookF size={18} className="text-slate-700 dark:text-white group-hover:text-white transition-colors" />
                 </div>
               </Link>
 
@@ -39,8 +39,8 @@ export default function Footer() {
               </Link>
 
               <Link href="#">
-                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-violet-600 transition-all duration-300">
-                  <FaLinkedinIn size={18} className="text-white" />
+                <div className="w-10 h-10 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-violet-600 hover:text-white group transition-all duration-300">
+                  <FaLinkedinIn size={18} className="text-slate-700 dark:text-white group-hover:text-white transition-colors" />
                 </div>
               </Link>
             </div>
@@ -48,7 +48,7 @@ export default function Footer() {
 
           {/* product */}
           <div>
-            <h3 className="text-violet-500 text-sm font-medium mb-6">
+            <h3 className="text-violet-600 dark:text-violet-500 text-sm font-medium mb-6">
               Product
             </h3>
 
@@ -56,7 +56,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Job discovery
                 </Link>
@@ -65,7 +65,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Worker AI
                 </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Companies
                 </Link>
@@ -83,7 +83,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Salary data
                 </Link>
@@ -93,7 +93,7 @@ export default function Footer() {
 
           {/* navigations */}
           <div>
-            <h3 className="text-violet-500 text-sm font-medium mb-6">
+            <h3 className="text-violet-600 dark:text-violet-500 text-sm font-medium mb-6">
               Navigations
             </h3>
 
@@ -101,7 +101,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Help center
                 </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Career library
                 </Link>
@@ -119,7 +119,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Contact
                 </Link>
@@ -129,7 +129,7 @@ export default function Footer() {
 
           {/* resources */}
           <div>
-            <h3 className="text-violet-500 text-sm font-medium mb-6">
+            <h3 className="text-violet-600 dark:text-violet-500 text-sm font-medium mb-6">
               Resources
             </h3>
 
@@ -137,7 +137,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Brand Guideline
                 </Link>
@@ -146,7 +146,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-500 hover:text-white transition"
+                  className="text-slate-600 dark:text-gray-500 hover:text-slate-900 dark:hover:text-white transition"
                 >
                   Newsroom
                 </Link>
@@ -156,22 +156,22 @@ export default function Footer() {
         </div>
 
         {/* bottom */}
-        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-slate-200 dark:border-white/10 mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-slate-600 dark:text-gray-500 text-sm">
             Copyright 2024 —Programming Hero
           </p>
 
           <div className="flex items-center gap-6">
             <Link
               href="#"
-              className="text-gray-500 text-sm hover:text-white transition"
+              className="text-slate-600 dark:text-gray-500 text-sm hover:text-slate-900 dark:hover:text-white transition"
             >
               Terms & Policy
             </Link>
 
             <Link
               href="#"
-              className="text-gray-500 text-sm hover:text-white transition"
+              className="text-slate-600 dark:text-gray-500 text-sm hover:text-slate-900 dark:hover:text-white transition"
             >
               Privacy Guideline
             </Link>

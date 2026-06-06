@@ -20,25 +20,25 @@ const LookSection = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 max-w-4xl mx-auto text-center px-6"
       >
-        <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight">
+        <h1 className="text-slate-900 dark:text-white text-4xl md:text-6xl font-bold leading-tight">
           Your next role is
           <br />
           already looking for you
         </h1>
 
-        <p className="mt-6 text-gray-400 text-lg">
+        <p className="mt-6 text-slate-600 dark:text-gray-400 text-lg">
           Build a profile in three minutes. The matches start arriving tomorrow
           morning.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/signup">
-            <button className="px-8 py-4 bg-white text-black rounded-xl font-medium hover:scale-105 transition duration-300">
+            <button className="px-8 py-4 bg-slate-900 text-white dark:bg-white dark:text-black rounded-xl font-medium hover:scale-105 transition duration-300">
               Create a free account
             </button>
           </Link>
 
-          <button className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-sm text-white rounded-xl hover:bg-white/10 transition duration-300">
+          <button className="px-8 py-4 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-sm text-slate-800 dark:text-white rounded-xl hover:bg-black/10 dark:hover:bg-white/10 transition duration-300">
             View pricing
           </button>
         </div>

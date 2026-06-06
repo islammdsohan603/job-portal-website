@@ -24,9 +24,9 @@ const CompanyPage = async ({ searchParams }) => {
   const paginatedData = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <div className="  min-h-screen bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f] py-28 px-4 md:px-8">
+    <div className="min-h-screen bg-white px-4 py-28 transition-colors duration-300 dark:bg-gradient-to-br dark:from-[#0a0a0f] dark:via-[#1a1a24] dark:to-[#0a0a0f] md:px-8">
       <div className="w-10/12 mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold text-white text-center mb-12">
+        <h2 className="mb-12 text-center text-4xl font-bold text-slate-900 dark:text-white md:text-6xl">
           Top Companies Hiring Now
         </h2>
 

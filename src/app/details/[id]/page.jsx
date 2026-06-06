@@ -48,9 +48,9 @@ const JobDetailsPage = ({ params }) => {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center ">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0f] flex items-center justify-center transition-colors duration-300">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
             {error || 'Job not found'}
           </h1>
           <button
@@ -80,11 +80,11 @@ const JobDetailsPage = ({ params }) => {
   } = data;
 
   return (
-    <div className="  min-h-screen bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f] py-28 px-4 md:px-8">
+    <div className="min-h-screen bg-white dark:bg-gradient-to-br dark:from-[#0a0a0f] dark:via-[#1a1a24] dark:to-[#0a0a0f] text-slate-800 dark:text-white py-28 px-4 md:px-8 transition-colors duration-300">
       {/* Back Button */}
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-gray-400 hover:text-orange-500 mb-8 transition-colors"
+        className="flex items-center gap-2 text-slate-500 dark:text-gray-400 hover:text-orange-500 mb-8 transition-colors"
       >
         <ArrowLeft size={20} />
         <span>Back to Jobs</span>
@@ -93,7 +93,7 @@ const JobDetailsPage = ({ params }) => {
       {/* Main Container */}
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="bg-[#111118] border border-white/10 rounded-3xl p-8 md:p-12 mb-8">
+        <div className="bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-12 mb-8 shadow-sm">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -107,7 +107,7 @@ const JobDetailsPage = ({ params }) => {
 
             {/* Company Info */}
             <div className="flex-1">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2">
                 {name}
               </h1>
               <p className="text-orange-500 text-lg font-semibold mb-4">
@@ -116,19 +116,19 @@ const JobDetailsPage = ({ params }) => {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="flex items-center gap-2 text-gray-300">
+                <div className="flex items-center gap-2 text-slate-650 dark:text-gray-300">
                   <MapPin size={18} className="text-orange-500" />
                   <span>{location}</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-300">
+                <div className="flex items-center gap-2 text-slate-650 dark:text-gray-300">
                   <Building2 size={18} className="text-orange-500" />
                   <span>Founded {founded}</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-300">
+                <div className="flex items-center gap-2 text-slate-650 dark:text-gray-300">
                   <Users size={18} className="text-orange-500" />
                   <span>{employees?.toLocaleString()}</span>
                 </div>
-                <div className="flex items-center gap-2 text-yellow-400">
+                <div className="flex items-center gap-2 text-yellow-550 dark:text-yellow-400">
                   <Star size={18} fill="currentColor" />
                   <span className="font-semibold">{rating}</span>
                 </div>
@@ -137,7 +137,6 @@ const JobDetailsPage = ({ params }) => {
           </div>
 
           {/* CTA Button */}
-
           <ApplyModal
             jobId={_id || resolvedParams.id}
             jobName={name}
@@ -151,19 +150,19 @@ const JobDetailsPage = ({ params }) => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* About Section */}
-            <div className="bg-[#111118] border border-white/10 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            <div className="bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-2xl p-8 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <div className="w-1 h-6 bg-orange-500 rounded"></div>
                 About Company
               </h2>
-              <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+              <p className="text-slate-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
                 {description || 'No description available for this company.'}
               </p>
             </div>
 
             {/* Key Benefits */}
-            <div className="bg-[#111118] border border-white/10 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <div className="bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-2xl p-8 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                 <div className="w-1 h-6 bg-orange-500 rounded"></div>
                 Why Join Us?
               </h2>
@@ -178,10 +177,10 @@ const JobDetailsPage = ({ params }) => {
                 ].map((benefit, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 p-4 bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors"
+                    className="flex items-center gap-3 p-4 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span className="text-gray-300">{benefit}</span>
+                    <span className="text-slate-700 dark:text-gray-300">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -191,8 +190,8 @@ const JobDetailsPage = ({ params }) => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Contact Info Card */}
-            <div className="bg-[#111118] border border-white/10 rounded-2xl p-8 sticky top-8">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+            <div className="bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-2xl p-8 sticky top-8 shadow-sm">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                 <Globe size={20} className="text-orange-500" />
                 Contact Info
               </h3>
@@ -203,17 +202,17 @@ const JobDetailsPage = ({ params }) => {
                     href={website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
+                    className="flex items-start gap-3 p-3 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
                   >
                     <Globe
                       size={18}
                       className="text-orange-500 flex-shrink-0 mt-1"
                     />
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">
+                      <p className="text-xs text-slate-500 dark:text-gray-500 uppercase tracking-wide">
                         Website
                       </p>
-                      <p className="text-gray-300 group-hover:text-orange-500 transition-colors break-all text-sm">
+                      <p className="text-slate-700 dark:text-gray-300 group-hover:text-orange-500 transition-colors break-all text-sm font-medium">
                         {website}
                       </p>
                     </div>
@@ -223,17 +222,17 @@ const JobDetailsPage = ({ params }) => {
                 {email && (
                   <a
                     href={`mailto:${email}`}
-                    className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
+                    className="flex items-start gap-3 p-3 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
                   >
                     <Mail
                       size={18}
                       className="text-orange-500 flex-shrink-0 mt-1"
                     />
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">
+                      <p className="text-xs text-slate-500 dark:text-gray-500 uppercase tracking-wide">
                         Email
                       </p>
-                      <p className="text-gray-300 group-hover:text-orange-500 transition-colors break-all text-sm">
+                      <p className="text-slate-700 dark:text-gray-300 group-hover:text-orange-500 transition-colors break-all text-sm font-medium">
                         {email}
                       </p>
                     </div>
@@ -243,17 +242,17 @@ const JobDetailsPage = ({ params }) => {
                 {phone && (
                   <a
                     href={`tel:${phone}`}
-                    className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
+                    className="flex items-start gap-3 p-3 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-orange-500/10 transition-colors group"
                   >
                     <Phone
                       size={18}
                       className="text-orange-500 flex-shrink-0 mt-1"
                     />
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">
+                      <p className="text-xs text-slate-500 dark:text-gray-500 uppercase tracking-wide">
                         Phone
                       </p>
-                      <p className="text-gray-300 group-hover:text-orange-500 transition-colors text-sm">
+                      <p className="text-slate-700 dark:text-gray-300 group-hover:text-orange-500 transition-colors text-sm font-medium">
                         {phone}
                       </p>
                     </div>
@@ -261,21 +260,21 @@ const JobDetailsPage = ({ params }) => {
                 )}
               </div>
 
-              <div className="mt-6 pt-6 border-t border-white/10">
-                <p className="text-xs text-gray-500 text-center">
+              <div className="mt-6 pt-6 border-t border-black/10 dark:border-white/10">
+                <p className="text-xs text-slate-500 dark:text-gray-500 text-center">
                   ✨ Join this amazing team
                 </p>
               </div>
             </div>
 
             {/* Share Card */}
-            <div className="bg-[#111118] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-lg font-bold text-white mb-4">Share</h3>
+            <div className="bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-2xl p-8 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Share</h3>
               <div className="flex gap-3">
-                <button className="flex-1 bg-white/10 hover:bg-orange-500/20 text-gray-300 py-3 rounded-lg transition-colors font-medium text-sm">
+                <button className="flex-1 bg-black/5 dark:bg-white/10 hover:bg-orange-500/20 text-slate-700 dark:text-gray-300 py-3 rounded-lg transition-colors font-medium text-sm">
                   Share
                 </button>
-                <button className="flex-1 bg-white/10 hover:bg-orange-500/20 text-gray-300 py-3 rounded-lg transition-colors font-medium text-sm">
+                <button className="flex-1 bg-black/5 dark:bg-white/10 hover:bg-orange-500/20 text-slate-700 dark:text-gray-300 py-3 rounded-lg transition-colors font-medium text-sm">
                   Save
                 </button>
               </div>

@@ -28,7 +28,7 @@ const PageLink = ({ href, disabled, active, children }) => {
   const className = `flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-sm font-semibold transition-colors ${
     active
       ? 'border-orange-500 bg-orange-500 text-white'
-      : 'border-white/10 bg-white/[0.03] text-zinc-300 hover:border-orange-500/60 hover:text-white'
+      : 'border-black/10 bg-black/[0.03] text-slate-700 hover:border-orange-500/60 hover:text-orange-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-300 dark:hover:text-white'
   } ${disabled ? 'pointer-events-none opacity-40' : ''}`;
 
   return (

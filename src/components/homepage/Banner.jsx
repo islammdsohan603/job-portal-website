@@ -12,7 +12,7 @@ import {
 
 export default function Banner() {
   return (
-    <section className="pt-10 md:pt-20 relative min-h-screen overflow-hidden bg-black text-white font-sans">
+    <section className="pt-10 md:pt-20 relative min-h-screen overflow-hidden bg-white dark:bg-black text-slate-900 dark:text-white font-sans">
       {/* Responsive Background Image Container */}
       <div
         className={`
@@ -28,18 +28,18 @@ export default function Banner() {
         style={{ backgroundImage: "url('/globe.png')" }}
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/70 z-0" />
+      {/* Dark/Light Overlay */}
+      <div className="absolute inset-0 bg-white/60 dark:bg-black/70 z-0" />
 
       {/* Top Subtle Glow */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-blue-600/20 blur-[120px] rounded-full z-0" />
+      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-blue-600/10 dark:bg-blue-600/20 blur-[120px] rounded-full z-0" />
 
       <div className="relative z-10 container mx-auto px-4 pt-20 pb-20 flex flex-col items-center">
         {/* Badge */}
         <div className="mb-6">
           <Chip
             variant="flat"
-            className="bg-white/10 text-white/80 border border-white/10 px-4 py-1.5 backdrop-blur-md"
+            className="bg-black/5 dark:bg-white/10 text-slate-700 dark:text-white/80 border border-black/10 dark:border-white/10 px-4 py-1.5 backdrop-blur-md"
             radius="full"
           >
             💼 50,000+ NEW JOBS THIS MONTH
@@ -51,7 +51,7 @@ export default function Banner() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6">
             Find Your Dream Job Today
           </h1>
-          <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-gray-400 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
             HireLoop connects top talent with world-class companies. Browse
             thousands of curated opportunities and land your next role — faster.
           </p>
@@ -59,28 +59,28 @@ export default function Banner() {
 
         {/* Modern Search Bar */}
         <div className="w-full max-w-5xl mb-8 px-4 md:px-0">
-          <div className="bg-[#111118]/80 border border-white/10 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden">
+          <div className="bg-slate-50/90 dark:bg-[#111118]/80 border border-black/10 dark:border-white/10 rounded-2xl md:rounded-full flex flex-col md:flex-row items-center backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden">
             {/* Job Search */}
             <div className="flex items-center w-full h-16 px-5">
-              <Search size={20} className="text-gray-400 mr-3 flex-shrink-0" />
+              <Search size={20} className="text-slate-400 dark:text-gray-400 mr-3 flex-shrink-0" />
 
               <input
                 type="search"
                 placeholder="Job title, keyword, or company"
-                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
+                className="w-full bg-transparent text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
               />
             </div>
 
-            <div className="hidden md:block w-px h-10 bg-white/10" />
+            <div className="hidden md:block w-px h-10 bg-black/10 dark:bg-white/10" />
 
             {/* Location Search */}
             <div className="flex items-center w-full h-16 px-5">
-              <MapPin size={20} className="text-gray-400 mr-3 flex-shrink-0" />
+              <MapPin size={20} className="text-slate-400 dark:text-gray-400 mr-3 flex-shrink-0" />
 
               <input
                 type="search"
                 placeholder="Location or Remote"
-                className="w-full bg-transparent text-white placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
+                className="w-full bg-transparent text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-gray-500 outline-none border-none text-sm md:text-base"
               />
             </div>
 
@@ -113,14 +113,14 @@ export default function Banner() {
 
         {/* Trending Section */}
         <div className="flex flex-wrap justify-center items-center gap-3 mb-24">
-          <span className="text-gray-500 text-sm font-medium">
+          <span className="text-slate-500 dark:text-gray-500 text-sm font-medium">
             Trending Position
           </span>
           {['Product Designer', 'AI Engineering', 'Dev-ops Engineer'].map(
             item => (
               <Chip
                 key={item}
-                className="bg-white/5 text-gray-300 border border-white/10 rounded-full px-3 py-1 text-xs"
+                className="bg-black/5 dark:bg-white/5 text-slate-600 dark:text-gray-300 border border-black/10 dark:border-white/10 rounded-full px-3 py-1 text-xs"
               >
                 {item}
               </Chip>
@@ -131,11 +131,11 @@ export default function Banner() {
         {/* Globe and Stats Section */}
         <div className="relative w-full max-w-6xl mt-10 md:mt-20">
           <div className="relative w-full h-[300px] md:h-[450px] rounded-t-full overflow-hidden">
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle,rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:30px_30px]" />
+            <div className="absolute inset-0 opacity-10 dark:opacity-20 bg-[radial-gradient(circle,rgba(0,0,0,0.1)_1px,transparent_1px)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:30px_30px]" />
             <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-              <h2 className="text-2xl md:text-4xl font-medium leading-tight text-white/90">
+              <h2 className="text-2xl md:text-4xl font-medium leading-tight text-slate-800 dark:text-white/90">
                 Assisting over{' '}
-                <span className="text-white font-bold">15,000 job seekers</span>
+                <span className="text-slate-950 dark:text-white font-bold">15,000 job seekers</span>
                 <br />
                 find their dream positions.
               </h2>
@@ -172,12 +172,12 @@ export default function Banner() {
 
 function StatCard({ icon, value, label }) {
   return (
-    <Card className="bg-[#0f0f14]/80 backdrop-blur-md border border-white/10 p-6 h-full group hover:border-blue-500/50 transition-all duration-300">
-      <div className="text-gray-400 mb-8 group-hover:text-blue-400 transition-colors">
+    <Card className="bg-slate-50/90 dark:bg-[#0f0f14]/80 backdrop-blur-md border border-black/10 dark:border-white/10 p-6 h-full group hover:border-blue-500/50 transition-all duration-300">
+      <div className="text-slate-500 dark:text-gray-400 mb-8 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
         {icon}
       </div>
-      <h3 className="text-4xl font-bold text-white mb-1">{value}</h3>
-      <p className="text-gray-500 text-sm">{label}</p>
+      <h3 className="text-4xl font-bold text-slate-900 dark:text-white mb-1">{value}</h3>
+      <p className="text-slate-500 dark:text-gray-500 text-sm">{label}</p>
     </Card>
   );
 }

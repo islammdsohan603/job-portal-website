@@ -80,7 +80,7 @@ const cardVariants = {
 
 export default function FeaturesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#0B0B0F] py-24">
+    <section className="relative overflow-hidden bg-white dark:bg-[#0B0B0F] py-24">
       {/* Background Blur */}
 
       <div className="absolute top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-600/10 blur-[120px]" />
@@ -98,14 +98,14 @@ export default function FeaturesSection() {
           <div className="flex items-center justify-center gap-3 mb-5">
             <span className="h-2 w-2 rounded-full bg-blue-500" />
 
-            <span className="uppercase tracking-[3px] text-xs text-gray-400">
+            <span className="uppercase tracking-[3px] text-xs text-slate-500 dark:text-gray-400">
               Features Job
             </span>
 
             <span className="h-2 w-2 rounded-full bg-blue-500" />
           </div>
 
-          <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight">
+          <h2 className="text-slate-900 dark:text-white text-4xl md:text-6xl font-bold leading-tight">
             Everything you need
             <br />
             to succeed
@@ -139,19 +139,19 @@ export default function FeaturesSection() {
                 <div className="relative">
                   <div className="absolute inset-0 rounded-xl bg-violet-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
-                  <div className="relative flex items-center justify-center h-12 w-12 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl">
-                    <Icon size={20} className="text-violet-300" />
+                  <div className="relative flex items-center justify-center h-12 w-12 rounded-xl border border-black/10 dark:border-white/10 bg-slate-50 dark:bg-black/60 backdrop-blur-xl">
+                    <Icon size={20} className="text-violet-600 dark:text-violet-300" />
                   </div>
                 </div>
 
                 {/* Content */}
 
                 <div>
-                  <h3 className="text-white font-semibold mb-2 text-lg">
+                  <h3 className="text-slate-900 dark:text-white font-semibold mb-2 text-lg">
                     {feature.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm leading-6">
+                  <p className="text-slate-600 dark:text-gray-400 text-sm leading-6">
                     {feature.description}
                   </p>
                 </div>

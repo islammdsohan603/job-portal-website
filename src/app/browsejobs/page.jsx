@@ -24,7 +24,7 @@ const getCurrentPage = (page, totalPages) => {
 function SearchFallback() {
   return (
     <div className="w-full max-w-5xl px-4 md:px-0">
-      <div className="h-16 md:h-20 bg-[#111118]/80 border border-white/10 rounded-2xl md:rounded-full animate-pulse" />
+      <div className="h-16 md:h-20 bg-slate-100/80 dark:bg-[#111118]/80 border border-black/10 dark:border-white/10 rounded-2xl md:rounded-full animate-pulse" />
     </div>
   );
 }
@@ -32,8 +32,8 @@ function SearchFallback() {
 function FilterFallback() {
   return (
     <div className="mb-6">
-      <div className="h-5 w-32 bg-white/10 rounded mb-3 animate-pulse" />
-      <div className="h-12 bg-[#111118] border border-white/10 rounded-lg animate-pulse" />
+      <div className="h-5 w-32 bg-black/10 dark:bg-white/10 rounded mb-3 animate-pulse" />
+      <div className="h-12 bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 rounded-lg animate-pulse" />
     </div>
   );
 }
@@ -80,7 +80,7 @@ const JobsDataPage = async ({ searchParams }) => {
   const hasActiveFilters = Boolean(jobTitle || location || category);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] py-28">
+    <div className="min-h-screen bg-white dark:bg-[#0B0B0F] py-28 transition-colors duration-300">
       <div className="w-10/12 mx-auto">
         <div className="mb-8 mx-auto w-full max-w-5xl">
           <Suspense fallback={<SearchFallback />}>
@@ -91,7 +91,7 @@ const JobsDataPage = async ({ searchParams }) => {
         <div className="grid grid-cols-1  md:grid-cols-5 gap-8">
           <div className="col-span-1">
             <div className="sticky top-32">
-              <h3 className="text-white text-lg font-bold mb-4">Filters</h3>
+              <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">Filters</h3>
               <Suspense fallback={<FilterFallback />}>
                 <Select categories={categories} />
               </Suspense>
@@ -110,7 +110,7 @@ const JobsDataPage = async ({ searchParams }) => {
           <div className="col-span-4">
             {filteredData.length === 0 ? (
               <div className="flex justify-center items-center h-96">
-                <div className="text-gray-400 text-center">
+                <div className="text-slate-500 dark:text-gray-400 text-center">
                   <p className="text-lg font-semibold">No jobs found</p>
                   <p className="text-sm">Try adjusting your filters</p>
                 </div>
@@ -132,7 +132,7 @@ const JobsDataPage = async ({ searchParams }) => {
           </div>
         </div>
 
-        <div className="mt-8 text-center text-gray-400">
+        <div className="mt-8 text-center text-slate-550 dark:text-gray-400">
           <p>
             Showing {paginatedData.length} of {filteredData.length} matching
             jobs

@@ -14,22 +14,10 @@ import {
   X,
 } from 'lucide-react';
 
-const initialFormData = {
-  name: '',
-  email: '',
-  phone: '',
-  currentRole: '',
-  expectedSalary: '',
-  availability: '',
-  resumeUrl: '',
-  portfolioUrl: '',
-  message: '',
-};
-
 const inputClass =
-  'w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none transition-all focus:border-orange-500 focus:bg-white/[0.07] focus:ring-2 focus:ring-orange-500/20';
+  'w-full rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-500 outline-none transition-all focus:border-orange-500 focus:bg-black/[0.08] dark:focus:bg-white/[0.07] focus:ring-2 focus:ring-orange-500/20';
 
-const labelClass = 'mb-2 block text-sm font-medium text-gray-300';
+const labelClass = 'mb-2 block text-sm font-medium text-slate-700 dark:text-gray-300';
 
 const ApplyModal = ({ jobId, jobName, industry, location }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -146,13 +134,13 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
           role="presentation"
         >
           <div
-            className="max-h-[92vh] w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-[#111118] shadow-2xl shadow-black/40"
+            className="max-h-[92vh] w-full max-w-3xl overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111118] shadow-2xl shadow-black/10 dark:shadow-black/40"
             onMouseDown={event => event.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-labelledby="apply-modal-title"
           >
-            <div className="flex items-start justify-between gap-4 border-b border-white/10 p-5 md:p-6">
+            <div className="flex items-start justify-between gap-4 border-b border-black/10 dark:border-white/10 p-5 md:p-6">
               <div className="flex gap-4">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-orange-500/15 text-orange-500">
                   <BriefcaseBusiness size={24} />
@@ -163,11 +151,11 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   </p>
                   <h2
                     id="apply-modal-title"
-                    className="mt-1 text-2xl font-bold text-white"
+                    className="mt-1 text-2xl font-bold text-slate-900 dark:text-white"
                   >
                     Apply for {jobName || 'this job'}
                   </h2>
-                  <p className="mt-1 text-sm text-gray-400">
+                  <p className="mt-1 text-sm text-slate-500 dark:text-gray-400">
                     {industry || 'Share your details'}{' '}
                     {location ? `- ${location}` : ''}
                   </p>
@@ -178,7 +166,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                 type="button"
                 onClick={closeModal}
                 disabled={loading}
-                className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-lg p-2 text-slate-500 dark:text-gray-400 transition-colors hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Close application form"
               >
                 <X size={20} />
@@ -197,7 +185,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   <div className="relative">
                     <User
                       size={18}
-                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"
                     />
                     <input
                       id="name"
@@ -219,7 +207,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   <div className="relative">
                     <Mail
                       size={18}
-                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"
                     />
                     <input
                       id="email"
@@ -241,7 +229,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   <div className="relative">
                     <Phone
                       size={18}
-                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"
                     />
                     <input
                       id="phone"
@@ -295,21 +283,21 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                     name="availability"
                     value={formData.availability}
                     onChange={handleChange}
-                    className={inputClass}
+                    className={`${inputClass} text-slate-800 dark:text-white bg-white dark:bg-[#111118]`}
                   >
-                    <option className="bg-[#111118]" value="">
+                    <option className="bg-white dark:bg-[#111118] text-slate-850 dark:text-white" value="">
                       Select availability
                     </option>
-                    <option className="bg-[#111118]" value="Immediately">
+                    <option className="bg-white dark:bg-[#111118] text-slate-850 dark:text-white" value="Immediately">
                       Immediately
                     </option>
-                    <option className="bg-[#111118]" value="Within 2 weeks">
+                    <option className="bg-white dark:bg-[#111118] text-slate-850 dark:text-white" value="Within 2 weeks">
                       Within 2 weeks
                     </option>
-                    <option className="bg-[#111118]" value="Within 1 month">
+                    <option className="bg-white dark:bg-[#111118] text-slate-850 dark:text-white" value="Within 1 month">
                       Within 1 month
                     </option>
-                    <option className="bg-[#111118]" value="Negotiable">
+                    <option className="bg-white dark:bg-[#111118] text-slate-850 dark:text-white" value="Negotiable">
                       Negotiable
                     </option>
                   </select>
@@ -322,7 +310,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   <div className="relative">
                     <FileText
                       size={18}
-                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"
                     />
                     <input
                       id="resumeUrl"
@@ -344,7 +332,7 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                   <div className="relative">
                     <LinkIcon
                       size={18}
-                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500"
                     />
                     <input
                       id="portfolioUrl"
@@ -379,8 +367,8 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                 <div
                   className={`mt-5 flex items-center gap-3 rounded-xl border px-4 py-3 text-sm ${
                     success
-                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
-                      : 'border-red-500/30 bg-red-500/10 text-red-300'
+                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300'
+                      : 'border-red-500/30 bg-red-500/10 text-red-650 dark:text-red-300'
                   }`}
                 >
                   {success && <CheckCircle2 size={18} />}
@@ -390,12 +378,12 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
                 </div>
               )}
 
-              <div className="mt-6 flex flex-col-reverse gap-3 border-t border-white/10 pt-5 sm:flex-row sm:justify-end">
+              <div className="mt-6 flex flex-col-reverse gap-3 border-t border-black/10 dark:border-white/10 pt-5 sm:flex-row sm:justify-end">
                 <button
                   type="button"
                   onClick={closeModal}
                   disabled={loading}
-                  className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-xl border border-black/10 dark:border-white/10 px-5 py-3 font-semibold text-slate-650 dark:text-gray-300 transition-colors hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -423,6 +411,18 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
       )}
     </div>
   );
+};
+
+const initialFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  currentRole: '',
+  expectedSalary: '',
+  availability: '',
+  resumeUrl: '',
+  portfolioUrl: '',
+  message: '',
 };
 
 export default ApplyModal;

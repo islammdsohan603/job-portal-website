@@ -42,37 +42,36 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black px-4 py-28 text-white">
+    <section className="relative min-h-screen overflow-hidden bg-white px-4 py-28 text-slate-900 transition-colors duration-300 dark:bg-black dark:text-white">
       <div
-        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-25"
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-10 dark:opacity-25"
         style={{ backgroundImage: "url('/globe.png')" }}
       />
-      <div className="absolute inset-0 bg-black/75" />
-      <div className="absolute left-1/2 top-12 h-[420px] w-[min(90vw,640px)] -translate-x-1/2 rounded-full bg-blue-600/20 blur-[120px]" />
-      <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-violet-600/10 blur-[100px]" />
+      <div className="absolute inset-0 bg-white/80 dark:bg-black/75" />
+      <div className="absolute left-1/2 top-12 h-[420px] w-[min(90vw,640px)] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20" />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-14rem)] w-full max-w-md items-center">
-        <div className="w-full rounded-2xl border border-white/10 bg-[#0f0f14]/80 p-6 shadow-2xl backdrop-blur-2xl sm:p-8">
+        <div className="w-full rounded-2xl border border-black/10 bg-slate-50/90 p-6 shadow-2xl shadow-black/10 backdrop-blur-2xl dark:border-white/10 dark:bg-[#0f0f14]/80 dark:shadow-black/40 sm:p-8">
           <div className="mb-8 text-center">
-            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-blue-400">
+            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-black/[0.03] text-blue-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-blue-400">
               <LockKeyhole size={22} />
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-white">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               Sign In
             </h1>
-            <p className="mt-3 text-sm leading-6 text-zinc-400">
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-zinc-400">
               Welcome back! Sign in to your account
             </p>
           </div>
 
           <Form
             onSubmit={handleSubmit}
-            className="flex w-full flex-col gap-5 text-zinc-300"
+            className="flex w-full flex-col gap-5 text-slate-700 dark:text-zinc-300"
           >
             <div className="flex w-full flex-col gap-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-zinc-300"
+                className="text-sm font-medium text-slate-700 dark:text-zinc-300"
               >
                 Email
               </label>
@@ -82,14 +81,14 @@ const LoginPage = () => {
                 name="email"
                 placeholder="Enter your email"
                 type="email"
-                className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50"
+                className="w-full rounded-lg border border-black/10 bg-white p-3 text-slate-900 placeholder:text-slate-400 outline-none transition hover:border-black/20 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500 dark:hover:border-white/20"
               />
             </div>
 
             <div className="flex w-full flex-col gap-1.5">
               <label
                 htmlFor="password"
-                className="text-sm font-medium text-zinc-300"
+                className="text-sm font-medium text-slate-700 dark:text-zinc-300"
               >
                 Password
               </label>
@@ -100,11 +99,11 @@ const LoginPage = () => {
                   name="password"
                   placeholder="Enter your password"
                   type={showPassword ? 'text' : 'password'}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 p-3 pr-10 text-white placeholder-zinc-500 outline-none transition hover:border-white/20 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50"
+                  className="w-full rounded-lg border border-black/10 bg-white p-3 pr-10 text-slate-900 placeholder:text-slate-400 outline-none transition hover:border-black/20 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500 dark:hover:border-white/20"
                 />
                 <button
                   type="button"
-                  className="absolute right-3 text-zinc-400 hover:text-zinc-300 focus:outline-none"
+                  className="absolute right-3 text-slate-500 hover:text-slate-700 focus:outline-none dark:text-zinc-400 dark:hover:text-zinc-300"
                   onClick={() => setShowPassword(!showPassword)}
                   aria-label="toggle password visibility"
                 >
@@ -125,19 +124,19 @@ const LoginPage = () => {
           </Form>
 
           <div className="mt-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs uppercase tracking-[0.2em] text-zinc-600">
+            <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+            <span className="text-xs uppercase tracking-[0.2em] text-slate-400 dark:text-zinc-600">
               HireLoop
             </span>
-            <div className="h-px flex-1 bg-white/10" />
+            <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
           </div>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-slate-600 dark:text-zinc-400">
               Don&apos;t have an account?{' '}
               <Link
                 href="/signup"
-                className="font-medium text-violet-400 no-underline transition hover:text-violet-300"
+                className="font-medium text-violet-600 no-underline transition hover:text-violet-500 dark:text-violet-400 dark:hover:text-violet-300"
               >
                 Sign Up
               </Link>

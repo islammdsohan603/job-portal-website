@@ -32,14 +32,14 @@ const Select = ({ categories = [] }) => {
 
   return (
     <div className="mb-6">
-      <label htmlFor="industry-filter" className="text-white font-semibold mb-3 block">
+      <label htmlFor="industry-filter" className="text-slate-900 dark:text-white font-semibold mb-3 block">
         Filter by Industry
       </label>
       <select
         id="industry-filter"
         value={selectedCategory}
         onChange={e => handleCategoryChange(e.target.value)}
-        className="select select-info w-full bg-[#111118] border border-white/10 text-white"
+        className="select select-info w-full bg-slate-50 dark:bg-[#111118] border border-black/10 dark:border-white/10 text-slate-800 dark:text-white"
       >
         <option value="">All Industries</option>
         {categories.length > 0 ? (
