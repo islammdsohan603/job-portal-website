@@ -1,46 +1,47 @@
-import { MongoClient } from 'mongodb';
+const getBackendApiUrl = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '');
 
-const requiredFields = ['name', 'email', 'phone', 'resumeUrl', 'message'];
-
-let cachedClient;
-
-const getClient = async () => {
-  if (!process.env.MONGO_DB_URI) {
-    throw new Error('MONGO_DB_URI is not configured');
+  if (!apiUrl) {
+    throw new Error('NEXT_PUBLIC_API_URL is not configured');
   }
 
-  if (!cachedClient) {
-    cachedClient = new MongoClient(process.env.MONGO_DB_URI);
-    await cachedClient.connect();
-  }
-
-  return cachedClient;
+  return apiUrl;
 };
 
-const isBlank = value => typeof value !== 'string' || !value.trim();
+const toBackendApplicationPayload = body => ({
+  candidateName: body.name || body.candidateName,
+  email: body.email,
+  phone: body.phone,
+  currentRole: body.currentRole,
+  expectedSalary: body.expectedSalary,
+  availability: body.availability,
+  resumeUrl: body.resumeUrl,
+  portfolioUrl: body.portfolioUrl,
+  message: body.message,
+  jobId: body.jobId,
+  jobName: body.jobName,
+  industry: body.industry,
+  location: body.location,
+});
 
-const isValidUrl = value => {
-  if (isBlank(value)) return false;
-
+export async function GET() {
   try {
-    const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:';
-  } catch {
-    return false;
-  }
-};
+    const res = await fetch(`${getBackendApiUrl()}/job-seeker-data`, {
+      cache: 'no-store',
+    });
+    const data = await res.json().catch(() => []);
 
-export async function GET(request) {
-  try {
-    const client = await getClient();
-    const applications = client.db('jobprotal').collection('applications');
+    if (!res.ok) {
+      return Response.json(
+        { error: data?.error || 'Unable to fetch applications right now.' },
+        { status: res.status }
+      );
+    }
 
-    const allApplications = await applications
-      .find({})
-      .sort({ createdAt: -1 })
-      .toArray();
-
-    return Response.json({ applications: allApplications }, { status: 200 });
+    return Response.json(
+      { applications: Array.isArray(data) ? data : data.applications || [] },
+      { status: 200 }
+    );
   } catch (error) {
     console.error('Get Applications API Error:', error);
     return Response.json(
@@ -53,57 +54,21 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const missingFields = requiredFields.filter(field => isBlank(body[field]));
-
-    if (missingFields.length > 0) {
-      return Response.json(
-        { error: 'Please fill in all required fields.' },
-        { status: 400 }
-      );
-    }
-
-    if (!isValidUrl(body.resumeUrl)) {
-      return Response.json(
-        { error: 'Please provide a valid resume URL.' },
-        { status: 400 }
-      );
-    }
-
-    if (!isBlank(body.portfolioUrl) && !isValidUrl(body.portfolioUrl)) {
-      return Response.json(
-        { error: 'Please provide a valid portfolio or LinkedIn URL.' },
-        { status: 400 }
-      );
-    }
-
-    const now = new Date();
-    const client = await getClient();
-    const applications = client.db('jobprotal').collection('applications');
-
-    await applications.insertOne({
-      job: {
-        id: body.jobId || null,
-        name: body.jobName || null,
-        industry: body.industry || null,
-        location: body.location || null,
-      },
-      applicant: {
-        name: body.name.trim(),
-        email: body.email.trim().toLowerCase(),
-        phone: body.phone.trim(),
-        currentRole: body.currentRole?.trim() || '',
-        expectedSalary: body.expectedSalary?.trim() || '',
-        availability: body.availability?.trim() || '',
-        resumeUrl: body.resumeUrl.trim(),
-        portfolioUrl: body.portfolioUrl?.trim() || '',
-        message: body.message.trim(),
-      },
-      status: 'new',
-      createdAt: now,
-      updatedAt: now,
+    const res = await fetch(`${getBackendApiUrl()}/job-seeker`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(toBackendApplicationPayload(body)),
     });
+    const data = await res.json().catch(() => ({}));
 
-    return Response.json({ success: true }, { status: 201 });
+    if (!res.ok) {
+      return Response.json(
+        { error: data?.error || 'Unable to submit application right now.' },
+        { status: res.status }
+      );
+    }
+
+    return Response.json(data || { success: true }, { status: res.status });
   } catch (error) {
     console.error('Application API Error:', error);
     return Response.json(

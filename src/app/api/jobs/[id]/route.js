@@ -1,16 +1,25 @@
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
-    const res = await fetch(`http://localhost:5000/jobs/${id}`);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '');
+
+    if (!apiUrl) {
+      return Response.json(
+        { error: 'Backend API URL is not configured' },
+        { status: 500 }
+      );
+    }
+
+    const res = await fetch(`${apiUrl}/jobs/${id}`);
+    const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
       return Response.json(
-        { error: 'Failed to fetch job details' },
+        data?.error ? data : { error: 'Failed to fetch job details' },
         { status: res.status }
       );
     }
 
-    const data = await res.json();
     return Response.json(data);
   } catch (error) {
     console.error('API Error:', error);

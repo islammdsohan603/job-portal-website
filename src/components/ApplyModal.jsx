@@ -81,13 +81,13 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
     setError('');
     setSuccess(false);
     try {
-      const res = await fetch('http://localhost:5000/job-seeker', {
+      const res = await fetch('/api/applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          candidateName: formData.name,
+          name: formData.name,
           email: formData.email,
           phone: formData.phone,
           currentRole: formData.currentRole,
@@ -102,9 +102,10 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
           location: location,
         }),
       });
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(data.error || 'Failed to submit application.');
       }
 
       setSuccess(true);
@@ -113,7 +114,9 @@ const ApplyModal = ({ jobId, jobName, industry, location }) => {
         closeModal();
       }, 3000);
     } catch (err) {
-      setError('Failed to submit application. Please try again later.');
+      setError(err.message || 'Failed to submit application. Please try again later.');
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   Mail,
   Phone,
@@ -10,8 +9,11 @@ import {
 } from 'lucide-react';
 
 const ApplyListCard = ({ application }) => {
+  const applicant = application.applicant || application;
+  const job = application.job || application;
   const {
     candidateName,
+    name,
     email,
     phone,
     currentRole,
@@ -22,7 +24,18 @@ const ApplyListCard = ({ application }) => {
     jobName,
     industry,
     location,
-  } = application;
+  } = {
+    ...application,
+    ...applicant,
+    jobName: job.name || application.jobName,
+    industry: job.industry || application.industry,
+    location: job.location || application.location,
+  };
+  const applicantName = name || candidateName || 'Unknown Applicant';
+  const appliedJobName = jobName || 'Job details unavailable';
+  const appliedIndustry = industry || 'Industry unavailable';
+  const appliedLocation = location || 'Location unavailable';
+  const resumeHref = resumeUrl || '#';
 
   return (
     <div className="group relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-slate-50 dark:bg-[#111118] p-6 shadow-xl transition-all duration-300 hover:border-orange-500/40 hover:shadow-orange-500/5 dark:hover:shadow-orange-500/10">
@@ -33,7 +46,9 @@ const ApplyListCard = ({ application }) => {
         </div>
 
         <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white">{candidateName}</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+            {applicantName}
+          </h2>
           <p className="text-sm text-slate-500 dark:text-gray-400">Job Applicant</p>
         </div>
       </div>
@@ -42,12 +57,12 @@ const ApplyListCard = ({ application }) => {
       <div className="space-y-3">
         <div className="flex items-center gap-3 text-slate-700 dark:text-gray-300">
           <Mail size={18} className="text-orange-500" />
-          <span>{email}</span>
+          <span>{email || 'Email not provided'}</span>
         </div>
 
         <div className="flex items-center gap-3 text-slate-700 dark:text-gray-300">
           <Phone size={18} className="text-orange-500" />
-          <span>{phone}</span>
+          <span>{phone || 'Phone not provided'}</span>
         </div>
 
         <div className="flex items-center gap-3 text-slate-700 dark:text-gray-300">
@@ -65,17 +80,17 @@ const ApplyListCard = ({ application }) => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
             <Building2 size={18} className="text-orange-500" />
-            <span>{jobName}</span>
+            <span>{appliedJobName}</span>
           </div>
 
           <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
             <Briefcase size={18} className="text-orange-500" />
-            <span>{industry}</span>
+            <span>{appliedIndustry}</span>
           </div>
 
           <div className="flex items-center gap-2 text-slate-700 dark:text-gray-300">
             <MapPin size={18} className="text-orange-500" />
-            <span>{location}</span>
+            <span>{appliedLocation}</span>
           </div>
         </div>
       </div>
@@ -83,7 +98,7 @@ const ApplyListCard = ({ application }) => {
       {/* Availability */}
       <div className="mt-4">
         <span className="rounded-full bg-green-500/10 dark:bg-green-500/20 px-4 py-2 text-sm font-medium text-green-600 dark:text-green-400">
-          {availability}
+          {availability || 'Availability not provided'}
         </span>
       </div>
 
@@ -91,13 +106,15 @@ const ApplyListCard = ({ application }) => {
       <div className="mt-6">
         <h4 className="mb-2 font-semibold text-slate-900 dark:text-white">Cover Message</h4>
 
-        <p className="line-clamp-4 text-sm text-slate-600 dark:text-gray-400">{message}</p>
+        <p className="line-clamp-4 text-sm text-slate-600 dark:text-gray-400">
+          {message || 'No cover message provided.'}
+        </p>
       </div>
 
       {/* Buttons */}
       <div className="mt-6 flex gap-3">
         <a
-          href={resumeUrl}
+          href={resumeHref}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-orange-500 px-4 py-3 font-medium text-white transition hover:bg-orange-600"
@@ -107,13 +124,14 @@ const ApplyListCard = ({ application }) => {
         </a>
 
         {portfolioUrl && (
-          <Link
+          <a
             href={portfolioUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className="flex flex-1 items-center justify-center rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 font-medium text-slate-800 dark:text-white transition hover:bg-black/10 dark:hover:bg-white/10"
           >
             Portfolio
-          </Link>
+          </a>
         )}
       </div>
     </div>

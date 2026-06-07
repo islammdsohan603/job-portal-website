@@ -3,6 +3,8 @@ import { getApplyListData } from '@/db/data';
 import Link from 'next/link';
 import React from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const ApplyListPage = async () => {
   const data = await getApplyListData();
 
@@ -36,8 +38,11 @@ const ApplyListPage = async () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.map(application => (
-            <ApplyListCard key={application._id} application={application} />
+          {data.map((application, index) => (
+            <ApplyListCard
+              key={application._id || `${application.email}-${index}`}
+              application={application}
+            />
           ))}
         </div>
       </div>
