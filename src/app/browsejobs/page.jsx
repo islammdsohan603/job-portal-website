@@ -23,7 +23,7 @@ const getCurrentPage = (page, totalPages) => {
 
 function SearchFallback() {
   return (
-    <div className="w-full max-w-5xl px-4 md:px-0">
+    <div className="w-10/12 mx-auto px-4 md:px-0">
       <div className="h-16 md:h-20 bg-slate-100/80 dark:bg-[#111118]/80 border border-black/10 dark:border-white/10 rounded-2xl md:rounded-full animate-pulse" />
     </div>
   );
