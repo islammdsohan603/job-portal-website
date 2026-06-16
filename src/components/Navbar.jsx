@@ -101,7 +101,7 @@ export default function MainNavbar() {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between">
+      <div className="w-10/12 mx-auto flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3 no-underline">
           <Image
